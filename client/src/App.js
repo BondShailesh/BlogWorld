@@ -4,15 +4,17 @@ import Create from './pages/Create';
 import Blog from './pages/Createpart/Blog';
 import Login from './pages/Login';
 import { Route, Routes } from "react-router-dom"
+import Signup from './pages/Signup';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path='/create' element={<Create/>} />
-        <Route path='/blog' element={<Blog/>} />
-        <Route path='/login' element={<Login />}>
+        <Route path='/create' element={<Create />} />
+        <Route path='/' element={<Blog />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />}>
         </Route>
       </Routes>
     </div>

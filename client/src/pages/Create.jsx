@@ -1,42 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     FormControl,
-    FormLabel,
-    RadioGroup,
-    Radio,
-    FormHelperText,
-    HStack,
     Select,
     Input,
     Textarea,
     Heading,
-    Image,
     Button,
-    Text
+    Text,
+    Box
 } from '@chakra-ui/react'
 
 
 function Create() {
+    const [form, setForm] = useState({});
+
+    const handleChange = (e) => {
+        let { name, value, type, files } = e.target
+        if (type === "file") {
+            setForm({
+                ...form,
+                [name]: files
+            })
+        } else {
+            setForm({
+                ...form,
+                [name]: value
+            })
+        }
+    }
+    const handleForm = () => {
+        console.log(form);
+    }
 
     return (
         <FormControl
             m="auto"
             mt="20px"
-            w="70%"
-            border="3px solid orange"
+            w="97%"
+
+            // border="1px solid grey"
             p="20px">
             <Heading>Start your creative Journey Today</Heading>
-
             {/* Top Section-------------- */}
-            <FormControl isRequired >
-                <FormLabel fontSize="33px" fontWeight="extrabold">Title</FormLabel>
-                <Input fontWeight="900" placeholder='First name' />
-
-                <FormLabel mt="23px" fontSize="28px" fontWeight="extrabold">Description</FormLabel>
-                <Input fontWeight="semibold" placeholder='First name' />
-
-                <FormLabel mt="23px" fontSize="28px" fontWeight="extrabold">Select category</FormLabel>
-                <Select fontWeight="semibold" placeholder='Select category'>
+            <FormControl >
+                <Input onChange={handleChange} name="title" fontStyle="italic" m="10px" h={["34px", '74px']} fontWeight="light" fontSize={["20px", '44px']} placeholder='Say your blog title loud to the world' />
+                <Input onChange={handleChange} name="description" fontStyle="italic" m="10px" h={["30px", '64px']} fontWeight="light" fontSize={["20px", '44px']} placeholder='Give a nice Description' />
+                <Select onChange={handleChange} name="category" fontStyle="italic" m="10px" h={["27px", '54px']} fontWeight="light" fontSize={["16px", '34px']} placeholder='Select category'>
                     <option>Personal blogs</option>
                     <option>Business/corporate blogs</option>
                     <option>Personal brand/professional blogs</option>
@@ -48,36 +57,50 @@ function Create() {
             </FormControl>
 
             {/* Body part of blog */}
-            <FormLabel mt="23px" fontSize="24px" fontWeight="extrabold">Sub-title</FormLabel>
-            <Input fontWeight="semibold" placeholder='First name' />
-            <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
-            <Textarea h="200px" placeholder='Here is a sample placeholder' />
 
-            <FormLabel mt="23px" fontSize="24px" fontWeight="extrabold">Sub-title</FormLabel>
-            <Input fontWeight="semibold" placeholder='First name' />
-            <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
-            <Textarea h="200px" placeholder='Here is a sample placeholder' />
+            <Heading>Blog Body</Heading>
 
-            <FormLabel mt="23px" fontSize="24px" fontWeight="extrabold">Sub-title</FormLabel>
-            <Input fontWeight="semibold" placeholder='First name' />
-            <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
-            <Textarea h="200px" placeholder='Here is a sample placeholder' />
+            <Box border='1px dotted green' mt="30px">
+                <Input onChange={handleChange} name="subOne" h={["24px", '48px']} fontSize={["14px", '28px']} placeholder='Sub-title-1' />
+                <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
+                <Textarea onChange={handleChange} name="desOne" placeholder='To write like this' />
+            </Box>
+
+            <Box border='1px dotted green' mt="30px">
+                <Input onChange={handleChange} name="subTwo" h={["24px", '48px']} fontSize={["14px", '28px']} placeholder='Sub-title-2' />
+                <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
+                <Textarea onChange={handleChange} name="desTwo" placeholder='To write like this' />
+            </Box>
+
+            <Box border='1px dotted green' mt="30px">
+                <Input onChange={handleChange} name="subThree" h={["24px", '48px']} fontSize={["14px", '28px']} placeholder='Sub-title-3' />
+                <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
+                <Textarea onChange={handleChange} name="desThree" placeholder='To write like this' />
+            </Box>
+
+            <Box border='1px dotted green' mt="30px">
+                <Input onChange={handleChange} name="subFour" h={["24px", '48px']} fontSize={["14px", '28px']} placeholder='Sub-title-4' />
+                <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
+                <Textarea onChange={handleChange} name="desFour" placeholder='To write like this' />
+            </Box>
+
+            <Box border='1px dotted green' mt="30px">
+                <Input onChange={handleChange} name="subFive" h={["24px", '48px']} fontSize={["14px", '28px']} placeholder='Sub-title-5' />
+                <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
+                <Textarea onChange={handleChange} name="desFive" placeholder='To write like this' />
+            </Box>
 
             <Heading m="28px">Your Details</Heading>
-            <FormLabel mt='-25px' fontWeight="extrabold">Name</FormLabel>
-            <Input fontWeight="semibold" placeholder='First name' />
-            <FormLabel mt="20px" fontWeight="extrabold">Bio</FormLabel>
-            <Input fontWeight="semibold" placeholder='First name' />
-            <FormLabel mt="20px" fontWeight="extrabold">Instagram</FormLabel>
-            <Input fontWeight="semibold" placeholder='First name' />
-            <FormLabel mt="20px" fontWeight="extrabold">twitter</FormLabel>
-            <Input fontWeight="semibold" placeholder='First name' />
-            <FormLabel mt="20px" fontWeight="extrabold">facebook</FormLabel>
-            <Input fontWeight="semibold" placeholder='First name' />
-            <FormLabel mt="20px" fontWeight="extrabold">linkedin</FormLabel>
-            <Input fontWeight="semibold" placeholder='First name' />
 
-            <Button m="10px" bg="green.300" >Publish</Button>
+            <Input onChange={handleChange} name="desFive" fontWeight="fullName" placeholder='Full-Name' />
+            <Input onChange={handleChange} name="desFive" fontWeight="profession" placeholder='Profession' />
+            <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
+            <Input onChange={handleChange} name="ig" fontWeight="semibold" placeholder='Instagram url' />
+            <Input onChange={handleChange} name="tw" fontWeight="semibold" placeholder='Twitter url' />
+            <Input onChange={handleChange} name="fb" fontWeight="semibold" placeholder='Facebook url' />
+            <Input onChange={handleChange} name="lnk" fontWeight="semibold" placeholder='Linked url' />
+
+            <Button onClick={handleForm} m="10px" bg="green.300" size="md">Publish</Button>
 
         </FormControl>
     )
