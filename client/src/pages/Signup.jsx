@@ -1,9 +1,18 @@
-import { Box, Button, Checkbox, FormControl, FormLabel, Heading, HStack, Input, Text, VStack } from '@chakra-ui/react'
-import React from 'react'
+import { Box, Button, FormControl, FormLabel, Heading, HStack, Input, Text, VStack } from '@chakra-ui/react'
+import React from 'react';
+import {useDispatch, useSelector} from "react-redux"
 import { useNavigate } from 'react-router-dom'
+import { POST_API } from '../store/authentication/auth.action';
 
 function Signup() {
-    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const auth = useSelector((state)=>state.auth)
+    const navigate = useNavigate();
+   const handleSignup=()=>{
+   dispatch(POST_API("name"))
+   }
+console.log(auth);
+
     const handleLogin = () => {
         navigate("/login")
     }
@@ -24,7 +33,6 @@ function Signup() {
                     align={["flex-start", 'center']}
                     w='full'>
                     <Heading>Signup to OpenBlog</Heading>
-
                 </VStack>
 
                 <FormControl isRequired>
@@ -49,6 +57,7 @@ function Signup() {
                 </FormControl>
 
                 <Button
+                onClick={handleSignup}
                     bg="green.300"
                     w={['full', '170px']}
                     mt="30px"

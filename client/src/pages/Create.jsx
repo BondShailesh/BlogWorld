@@ -37,8 +37,6 @@ function Create() {
             m="auto"
             mt="20px"
             w="97%"
-
-            // border="1px solid grey"
             p="20px">
             <Heading>Start your creative Journey Today</Heading>
             {/* Top Section-------------- */}

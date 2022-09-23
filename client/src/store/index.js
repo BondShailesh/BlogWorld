@@ -1,14 +1,8 @@
-import { applyMiddleware, combineReducers, compose, legacy_createStore } from "redux"
-import { totoRedcer } from "./todoR/TodoRJson"
-import thunk from "redux-thunk";
-import { authReducer } from "./auth/AuthReducer";
+import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
+import thunk from "redux-thunk"
+import { authReducer } from "./authentication/auth.reducer";
 
 const rootReducer = combineReducers({
-    auth:authReducer,
-    todo:totoRedcer
+    auth:authReducer
 })
-
-const createComposer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-export const store = legacy_createStore(rootReducer, 
-    createComposer(applyMiddleware(thunk)),   
-    )
+export const  store = legacy_createStore(rootReducer,applyMiddleware(thunk))

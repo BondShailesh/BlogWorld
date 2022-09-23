@@ -1,4 +1,5 @@
 import { LOGIN, LOGOUT } from "./auth.type";
+
 const token = localStorage.getItem("token")
 const initState = {
     auth:!!token,
