@@ -18,8 +18,8 @@ function Create() {
 
     const onFileUpload = async () => {
   // Client ID
-  const clientId = "fd2e1e3d3d12ce1",
-    auth = "Client-ID " + "8ea4796d22a3b3f";
+  const clientId = "8ea4796d22a3b3f",
+  auth = "Client-ID " + clientId;
 
   // Creating an object of formData
   const formData = new FormData();
