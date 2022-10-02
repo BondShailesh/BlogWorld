@@ -17,44 +17,70 @@ function Create() {
     const [file, setFile] = useState();
 
     const onFileUpload = async () => {
-        // Client ID
-        const clientId = "8ea4796d22a3b3f",
-          auth = "Client-ID " + "8ea4796d22a3b3f";
-      
-        // Creating an object of formData
-        const formData = new FormData();
-      
-        // Adding our image to formData
-        formData.append("image", file);
-      
-        // Making the post request
-        await fetch("https://api.imgur.com/3/image/", {
-          // API Endpoint
-          method: "POST", // HTTP Method
-          body: formData, // Data to be sent
-          headers: {
-            // Setting header
-            Authorization: auth,
-            Accept: "application/json",
-          },
-        })
-          .then((res) => {
-            alert("image uploaded") 
-            console.log(res,"url kaha h")}) // Handling success
-          .catch((err) => alert("Failed") && console.log(err,"error")); // Handling error
-      };
+  // Client ID
+  const clientId = "fd2e1e3d3d12ce1",
+    auth = "Client-ID " + "8ea4796d22a3b3f";
 
+  // Creating an object of formData
+  const formData = new FormData();
+
+  // Adding our image to formData
+  formData.append("file", file);
+
+  // Making the post request
+  await fetch("https://api.imgur.com/3/image/", {
+    // API Endpoint
+    method: "POST", // HTTP Method
+    body: formData, // Data to be sent
+    headers: {
+      // Setting header
+      Authorization: auth,
+      Accept: "application/json",
+    },
+  })
+    .then((res) => alert("image uploaded") && console.log(res,"naya wala")) // Handling success
+    .catch((err) => alert("Failed") && console.log(err)); // Handling error
+};
+// -----------------
+    // const onFileUpload = async () => {
+    //     // Client ID
+    //     const clientId = "8ea4796d22a3b3f",
+    //       auth = "Client-ID " + "8ea4796d22a3b3f";
+      
+    //     // Creating an object of formData
+    //     const formData = new FormData();
+      
+    //     // Adding our image to formData
+    //     formData.append("image", file);
+      
+    //     // Making the post request
+    //     await fetch("https://api.imgur.com/3/image/", {
+    //       // API Endpoint
+    //       method: "POST", // HTTP Method
+    //       body: formData, // Data to be sent
+    //       headers: {
+    //         // Setting header
+    //         Authorization: auth,
+    //         Accept: "application/json",
+    //       },
+    //     })
+    //       .then((res) => {
+    //         alert("image uploaded") 
+    //         console.log(res,"url kaha h")}) // Handling success
+    //       .catch((err) => alert("Failed") && console.log(err,"error")); // Handling error
+    //   };
 
     const handleChange = async(e) => {
         let { name, value, type, files } = e.target
         if (type === "file") {
+             setForm({   
+                ...form,
+                [name]: files
+            })
             setFile({ file:files[0]});
             let k = await onFileUpload();
-            console.log(k,"ylvf;.iy");
-            // setForm({   
-            //     ...form,
-            //     [name]: files
-            // })
+            console.log(k,"dekho es bar");
+           
         } else {
             setForm({
                 ...form,
