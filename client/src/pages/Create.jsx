@@ -39,7 +39,7 @@ function Create() {
     },
   })
     .then((res) => alert("image uploaded") && console.log(res,"naya wala")) // Handling success
-    .catch((err) => alert("Failed") && console.log(err)); // Handling error
+    .catch((err) => alert("Failed") && console.log(err,"error")); // Handling error
 };
 // -----------------
     // const onFileUpload = async () => {
