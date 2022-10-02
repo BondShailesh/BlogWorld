@@ -1,19 +1,21 @@
 const express = require("express");
-const userDataRouter = express.Router();
-const userdataRoute = require("../schema/userdataSchema");
+const blogModel = require("../models/blog.model");
+const blogRouter = express.Router();
+// const userdataRoute = require("../schema/userdataSchema");
 
-userDataRouter.get("/", async (req, res) => {
-    let user = await userdataRoute.find().populate("cred", {
-        password: 0, data: 0, __v: 0
-    })
+blogRouter.get("/", async (req, res) => {
+    let user = await blogModel.find()
+    // .populate("cred", {
+    //     password: 0, data: 0, __v: 0
+    // })
     res.send(user)
 })
 
-userDataRouter.get("/:id", async (req, res) => {
+blogRouter.get("/:id", async (req, res) => {
     try {
-        let user1 = await userdataRoute.find({ cred: { _id: req.params.id } })
+        let user1 = await blogModel.find({ cred: { _id: req.params.id } })
         if (user1.length < 1) {
-            let user2 = await userdataRoute.find({ _id: req.params.id })
+            let user2 = await blogModel.find({ _id: req.params.id })
             res.send(user2);
         } else {
             res.send(user1);
@@ -23,40 +25,40 @@ userDataRouter.get("/:id", async (req, res) => {
     }
 })
 
-userDataRouter.post("/", async (req, res) => {
+blogRouter.post("/", async (req, res) => {
     try {
-        let user = await userdataRoute.create(req.body)
-        res.send(user);
-        console.log();
+        console.log(req.body);
+        let blog = await blogModel.create(req.body)
+        res.send(blog);
     } catch (e) {
         res.send(e.message)
     }
 })
 
-userDataRouter.delete("/:id", async (req, res) => {
+blogRouter.delete("/:id", async (req, res) => {
     try {
-        let user1 = await userdataRoute.find({ cred: { _id: req.params.id } })
-        if (user1.length >= 1) {
-            let userD = await userdataRoute.deleteMany({ cred: { _id: req.params.id } })
-            res.send(userD);
-        } else {
-            let user = await userdataRoute.deleteOne({ _id: req.params.id })
-            res.send(user);
-        }
+        // let user1 = await blogModelfind({ cred: { _id: req.params.id } })
+        // if (user1.length >= 1) {
+        //     let userD = await blogModeldeleteMany({ cred: { _id: req.params.id } })
+        //     res.send(userD);
+        // } else {
+            let blog = await blogModel.deleteOne({ _id: req.params.id })
+            res.send(blog);
+        // }
 
     } catch (e) {
         res.status(401).send(e.message)
     }
 })
 
-userDataRouter.patch("/:id", async (req, res) => {
-    try {
-        let user = await userdataRoute.updateOne({ _id: req.params.id }, { $set: { ...req.body } })
-        res.send(user)
-    } catch (e) {
-        res.status(401).send(e.message);
-        console.log("something");
-    }
-})
+// blogRouter.patch("/:id", async (req, res) => {
+//     try {
+//         let user = await blogModelupdateOne({ _id: req.params.id }, { $set: { ...req.body } })
+//         res.send(user)
+//     } catch (e) {
+//         res.status(401).send(e.message);
+//         console.log("something");
+//     }
+// })
 
-module.exports = userDataRouter
+module.exports = blogRouter

@@ -1,87 +1,107 @@
-import { Box, Button, FormControl, FormLabel, Heading, HStack, Input, Text, VStack } from '@chakra-ui/react'
-import React from 'react';
-import {useDispatch, useSelector} from "react-redux"
-import { useNavigate } from 'react-router-dom'
-import { POST_API } from '../store/authentication/auth.action';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Heading,
+  HStack,
+  Input,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import React from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { POST_API } from "../store/authentication/auth.action";
+import { SIGNUP_DATA } from "../store/signup/signup.action";
 
 function Signup() {
-    const dispatch = useDispatch()
-    const auth = useSelector((state)=>state.auth)
-    const navigate = useNavigate();
-   const handleSignup=()=>{
-   dispatch(POST_API("name"))
-   }
-console.log(auth);
+    let [form,setForm] = useState()
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
-    const handleLogin = () => {
-        navigate("/login")
-    }
-    return (
-        <Box w={["full", "md"]}
-            p={[8, 10]}
-            mt="20px"
-            mx="auto"
-            border={["none", "1px"]}
-            borderColor={["", "gray.300"]}
-            borderRadius={10}
-            boxShadow='xl'>
+  const handleSignup = () => {
+    alert("please Enter otp")
+    dispatch(SIGNUP_DATA(form))
+    // dispatch(POST_API(form));
+    navigate("/otp")
+  };
 
-            <VStack spacing={4}
-                align="flex-start"
-                w='full'>
-                <VStack spacing={4}
-                    align={["flex-start", 'center']}
-                    w='full'>
-                    <Heading>Signup to OpenBlog</Heading>
-                </VStack>
 
-                <FormControl isRequired>
-                    <FormLabel >E-mail Address</FormLabel>
-                    <Input rounded="3xl"
-                        variant='filled'
-                        type="email" />
-                </FormControl>
+  const handleLogin = () => {
+    navigate("/login");
+  };
+  const handleInput = (e)=>{
+   const {type,value , name} = e.target
+   setForm({
+    ...form,
+    [name]:value
+   })
+  }
+  
+  return (
+    <Box
+      w={["full", "md"]}
+      p={[8, 10]}
+      mt="20px"
+      mx="auto"
+      border={["none", "1px"]}
+      borderColor={["", "gray.300"]}
+      borderRadius={10}
+      boxShadow="xl"
+    >
+      <VStack spacing={4} align="flex-start" w="full">
+        <VStack spacing={4} align={["flex-start", "center"]} w="full">
+          <Heading>Signup to OpenBlog</Heading>
+        </VStack>
 
-                <FormControl isRequired>
-                    <FormLabel >password</FormLabel>
-                    <Input rounded="3xl"
-                        variant='filled'
-                        type='password' />
-                </FormControl>
+        <FormControl isRequired>
+          <FormLabel>E-mail Address</FormLabel>
+          <Input onChange={handleInput} name="email" rounded="3xl" variant="filled" type="email" />
+        </FormControl>
 
-                <FormControl isRequired>
-                    <FormLabel>Name</FormLabel>
-                    <Input rounded="3xl"
-                        variant='filled'
-                        type='password' />
-                </FormControl>
+        <FormControl isRequired>
+          <FormLabel>password</FormLabel>
+          <Input onChange={handleInput} name="password" rounded="3xl" variant="filled" type="password" />
+        </FormControl>
 
-                <Button
-                onClick={handleSignup}
-                    bg="green.300"
-                    w={['full', '170px']}
-                    mt="30px"
-                    alignSelf="center"
-                    borderRadius="20px"
-                    color="whitesmoke">
-                    Signup</Button>
+        <FormControl isRequired>
+          <FormLabel >Name</FormLabel>
+          <Input onChange={handleInput} name="name" rounded="3xl" variant="filled" type="text" />
+        </FormControl>
 
-                <HStack
-                    fontSize={["17px", "24px"]}>
-                    <Text>Already have an account?</Text>
+        <Button
+          onClick={handleSignup}
+          bg="green.300"
+          w={["full", "170px"]}
+          mt="30px"
+          alignSelf="center"
+          borderRadius="20px"
+          color="whitesmoke"
+        >
+          Signup
+        </Button>
 
-                    <Text onClick={handleLogin}
-                        color='green'
-                        cursor="pointer"
-                        _hover={{
-                            background: "white",
-                            color: "red",
-                        }}
-                    >Login</Text>
-                </HStack>
-            </VStack>
-        </Box>
-    )
+        <HStack fontSize={["17px", "24px"]}>
+          <Text>Already have an account?</Text>
+
+          <Text
+            onClick={handleLogin}
+            color="green"
+            cursor="pointer"
+            _hover={{
+              background: "white",
+              color: "red",
+            }}
+          >
+            Login
+          </Text>
+        </HStack>
+      </VStack>
+    </Box>
+  );
 }
 
-export default Signup
+export default Signup;

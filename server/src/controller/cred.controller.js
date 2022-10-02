@@ -4,6 +4,7 @@ const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 const argon2 = require("argon2")
 const redis = require('redis');
+const jwt = require("jsonwebtoken")
 const { ideahub } = require('googleapis/build/src/apis/ideahub');
 
 const client = redis.createClient({
@@ -23,22 +24,26 @@ const credController = {
             if (otp) {
                 let token = await client.get(email);
                 token = JSON.parse(token)
+                console.log(otp,"otpp",token);
                 if (token == otp) {
                     const hash = await argon2.hash(password);
-                    await credModel.create({ email, hash, name });
-                    return "Successfull"
+                    // await credModel.create({ email, hash, name });
+                    const tempToken =  jwt.sign({ email, password, name },"BLOG@#WALA",{expiresIn:"24 hr"})
+                    // const refreshToken = jwt.sign({},"BLOG@#WALA",{expiresIn:"30 day"})
+                    return {tempToken:tempToken}
+                   
                 } else {
                     return "Wrong OTP or Expired"
                 }
             } else {
                 const generateOtp = customAlphabet("0123456789")
                 let finalotp = generateOtp(5)
-                await client.set(email, finalotp, { EX: 300 })
+                await client.set(email, JSON.stringify(finalotp), { EX: 300 })
 
                 // Email Sending (By Google)
-                const client_Auth = new google.auth.OAuth2(CLIENT_ID, SECRET_ID, REDIRECT_URL)
-                client_Auth.setCredentials({ refresh_token: REFRESh })
-                const access_Token = await client_Auth.getAccessToken();
+                // const client_Auth = new google.auth.OAuth2(CLIENT_ID, SECRET_ID, REDIRECT_URL)
+                // client_Auth.setCredentials({ refresh_token: REFRESh })
+                // const access_Token = await client_Auth.getAccessToken();
 
                 // const transporter = nodemailer.createTransport({
                 //     service: 'gmail',
@@ -57,7 +62,8 @@ const credController = {
                 //     subject: "kuch V",
                 //     html: `Grreting from OpenBlog 
                 //        your otp is ${finalotp}`
-                // })
+                // })//
+                console.log(finalotp);
                 return finalotp
             }
 
@@ -66,10 +72,30 @@ const credController = {
         }
     },//create Done
 
-    get: async () => {
-        let token = await client.get("Shailesh")
-        token = JSON.parse(token)
-        return token
+    getNewToken: async(token) => {
+        try{
+            let verify = jwt.verify(token,"BLOG@#WALA")
+            if(verify){
+              let newToken = jwt.sign({},"BLOG@#WALA");
+              return newToken
+            }else{
+          return "Token Expired"
+            }            
+        }catch(e){
+            return e.message
+        }       
+    },
+    verifyToken: async(token) => {
+        try{
+            let verify = jwt.verify(token,"BLOG@#WALA")
+            if(verify){
+              return true
+            }else{
+          return "Token Expired"
+            }            
+        }catch(e){
+            return e.message
+        }       
     }
 }
 module.exports = { credController }

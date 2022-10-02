@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import axios from "axios";
 import {
     FormControl,
     Select,
@@ -13,14 +14,47 @@ import {
 
 function Create() {
     const [form, setForm] = useState({});
+    const [file, setFile] = useState();
 
-    const handleChange = (e) => {
+    const onFileUpload = async () => {
+        // Client ID
+        const clientId = "8ea4796d22a3b3f",
+          auth = "Client-ID " + "8ea4796d22a3b3f";
+      
+        // Creating an object of formData
+        const formData = new FormData();
+      
+        // Adding our image to formData
+        formData.append("image", file);
+      
+        // Making the post request
+        await fetch("https://api.imgur.com/3/image/", {
+          // API Endpoint
+          method: "POST", // HTTP Method
+          body: formData, // Data to be sent
+          headers: {
+            // Setting header
+            Authorization: auth,
+            Accept: "application/json",
+          },
+        })
+          .then((res) => {
+            alert("image uploaded") 
+            console.log(res,"url kaha h")}) // Handling success
+          .catch((err) => alert("Failed") && console.log(err,"error")); // Handling error
+      };
+
+
+    const handleChange = async(e) => {
         let { name, value, type, files } = e.target
         if (type === "file") {
-            setForm({
-                ...form,
-                [name]: files
-            })
+            setFile({ file:files[0]});
+            let k = await onFileUpload();
+            console.log(k,"ylvf;.iy");
+            // setForm({   
+            //     ...form,
+            //     [name]: files
+            // })
         } else {
             setForm({
                 ...form,
@@ -28,8 +62,11 @@ function Create() {
             })
         }
     }
-    const handleForm = () => {
+    const handleForm = async() => {
         console.log(form);
+        console.log(file);
+        // let res = await axios.post("http://localhost:8080/blogs",{...form})
+        // console.log(res.data);
     }
 
     return (
@@ -54,50 +91,65 @@ function Create() {
                 </Select>
             </FormControl>
 
-            {/* Body part of blog */}
-
+            {/* Body part of blog */}        
             <Heading>Blog Body</Heading>
 
-            <Box border='1px dotted green' mt="30px">
+            <Box border='1px dotted green' mt="30px" bg="yellow.50">
                 <Input onChange={handleChange} name="subOne" h={["24px", '48px']} fontSize={["14px", '28px']} placeholder='Sub-title-1' />
-                <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
-                <Textarea onChange={handleChange} name="desOne" placeholder='To write like this' />
+                <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" name="image"   /></Text>
+                {/* accept="image/*" */}
+                <Textarea onChange={handleChange} name="desOne1" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desOne2" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desOne3" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desOne4" placeholder='To write like this' />
             </Box>
 
-            <Box border='1px dotted green' mt="30px">
+            <Box border='1px dotted green' mt="30px" bg="yellow.50">
                 <Input onChange={handleChange} name="subTwo" h={["24px", '48px']} fontSize={["14px", '28px']} placeholder='Sub-title-2' />
                 <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
-                <Textarea onChange={handleChange} name="desTwo" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desTwo1" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desTwo2" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desTwo3" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desTwo4" placeholder='To write like this' />
             </Box>
 
-            <Box border='1px dotted green' mt="30px">
+            <Box border='1px dotted green' mt="30px" bg="yellow.50">
                 <Input onChange={handleChange} name="subThree" h={["24px", '48px']} fontSize={["14px", '28px']} placeholder='Sub-title-3' />
                 <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
-                <Textarea onChange={handleChange} name="desThree" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desThree1" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desThree2" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desThree3" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desThree4" placeholder='To write like this' />
             </Box>
 
-            <Box border='1px dotted green' mt="30px">
+            <Box border='1px dotted green' mt="30px" bg="yellow.50">
                 <Input onChange={handleChange} name="subFour" h={["24px", '48px']} fontSize={["14px", '28px']} placeholder='Sub-title-4' />
-                <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
-                <Textarea onChange={handleChange} name="desFour" placeholder='To write like this' />
+                <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" name="file"  accept="image/*" /></Text>
+                <Textarea onChange={handleChange} name="desFour1" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desFour2" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desFour3" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desFour4" placeholder='To write like this' />
             </Box>
 
-            <Box border='1px dotted green' mt="30px">
+            <Box border='1px dotted green' mt="30px" bg="yellow.50">
                 <Input onChange={handleChange} name="subFive" h={["24px", '48px']} fontSize={["14px", '28px']} placeholder='Sub-title-5' />
                 <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
-                <Textarea onChange={handleChange} name="desFive" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desFive1" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desFive2" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desFive3" placeholder='To write like this' />
+                <Textarea onChange={handleChange} name="desFive4" placeholder='To write like this' />
             </Box>
 
             <Heading m="28px">Your Details</Heading>
-
-            <Input onChange={handleChange} name="desFive" fontWeight="fullName" placeholder='Full-Name' />
-            <Input onChange={handleChange} name="desFive" fontWeight="profession" placeholder='Profession' />
+             <Box bg="pink.50">
+            <Input onChange={handleChange} name="fullName" fontWeight="semibold" placeholder='Full-Name' />
+            <Input onChange={handleChange} name="profession" fontWeight="semibold" placeholder='Profession' />
             <Text onChange={handleChange} name="propic" color="red.400"> <span pr="34px">Choose your profile pic </span> <input type="file" accept="image/*" /></Text>
             <Input onChange={handleChange} name="ig" fontWeight="semibold" placeholder='Instagram url' />
             <Input onChange={handleChange} name="tw" fontWeight="semibold" placeholder='Twitter url' />
             <Input onChange={handleChange} name="fb" fontWeight="semibold" placeholder='Facebook url' />
             <Input onChange={handleChange} name="lnk" fontWeight="semibold" placeholder='Linked url' />
-
+            </Box>
             <Button onClick={handleForm} m="10px" bg="green.300" size="md">Publish</Button>
 
         </FormControl>
