@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from "axios";
+// import axios from "axios";
 import {
     FormControl,
     Select,
@@ -10,36 +10,40 @@ import {
     Text,
     Box
 } from '@chakra-ui/react'
+import { useEffect } from 'react';
 
 
 function Create() {
+    const [value,setValue] = useState(false)
     const [form, setForm] = useState({});
     const [file, setFile] = useState();
 
+    useEffect(()=>{
+        if(value){
+            onFileUpload() 
+            setValue(false)
+        }
+    },[value])
+
     const onFileUpload = async () => {
-  // Client ID
-  const clientId = "8ea4796d22a3b3f",
-  auth = "Client-ID " + clientId;
-
-  // Creating an object of formData
-  const formData = new FormData();
-
-  // Adding our image to formData
-  formData.append("file", file);
-
-  // Making the post request
-  await fetch("https://api.imgur.com/3/image/", {
-    // API Endpoint
-    method: "POST", // HTTP Method
-    body: formData, // Data to be sent
-    headers: {
-      // Setting header
-      Authorization: auth,
-      Accept: "application/json",
-    },
-  })
-    .then((res) => alert("image uploaded") && console.log(res,"naya wala")) // Handling success
-    .catch((err) => alert("Failed") && console.log(err,"error")); // Handling error
+        var formdata = new FormData();
+        formdata.append("image", file.file);
+        console.log(file.file,"file");
+        var requestOptions = {
+          method: 'POST',
+          headers:
+          {
+            "Authorization": "Bearer acdc4e25e6c81c17c9f7a1fbf55d3a18aa20675c",
+            "Content-Type": "application/json",
+        },
+          body: formdata,
+          redirect: 'follow'
+        };
+        
+        fetch("https://api.imgur.com/3/image/", requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
 };
 // -----------------
     // const onFileUpload = async () => {
@@ -78,9 +82,9 @@ function Create() {
                 [name]: files
             })
             setFile({ file:files[0]});
-            let k = await onFileUpload();
-            console.log(k,"dekho es bar");
-           
+            // let k = await onFileUpload();
+            // console.log(k,"dekho es bar");
+           setValue(true)
         } else {
             setForm({
                 ...form,
