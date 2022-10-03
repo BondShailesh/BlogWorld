@@ -33,8 +33,7 @@ function Create() {
           method: 'POST',
           headers:
           {
-            "Authorization": "Bearer acdc4e25e6c81c17c9f7a1fbf55d3a18aa20675c",
-            "Content-Type": "application/json",
+            "Authorization": "Bearer acdc4e25e6c81c17c9f7a1fbf55d3a18aa20675c"          
         },
           body: formdata,
           redirect: 'follow'
