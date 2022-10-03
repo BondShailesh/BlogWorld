@@ -28,6 +28,7 @@ function Create() {
     const onFileUpload = async () => {
         var formdata = new FormData();
         formdata.append("image", file.file);
+        formdata.append("type",file)
         console.log(file.file,"file");
         var requestOptions = {
           method: 'POST',
