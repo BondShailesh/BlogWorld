@@ -42,7 +42,7 @@ function Create() {
       .then((response) => response.text())
       .then((result) => {
         result = JSON.parse(result)
-        console.log(result.data.link,"result hai ye hi")
+        console.log(result,"result hai ye hi")
         // setForm({
         //   ...form,
         //   file: result.data
