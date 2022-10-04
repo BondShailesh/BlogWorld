@@ -41,7 +41,8 @@ function Create() {
     fetch("https://api.imgur.com/3/image/", requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        console.log(JSON.parse(result.data.link),"result")
+        result = JSON.parse(result)
+        console.log(result.data.link,"result hai ye hi")
         // setForm({
         //   ...form,
         //   file: result.data
