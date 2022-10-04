@@ -43,10 +43,10 @@ function Create() {
       .then((result) => {
         result = JSON.parse(result)
         console.log(result,"result hai ye hi")
-        // setForm({
-        //   ...form,
-        //   file: result.data
-        // });
+        setForm({
+          ...form,
+          file: result
+        });
         console.log(form,"kuch form");
       })
       .catch((error) => console.log("error", error));
