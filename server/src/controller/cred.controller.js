@@ -24,14 +24,14 @@ const credController = {
             if (otp) {
                 let token = await client.get(email);
                 token = JSON.parse(token)
-                console.log(otp,"otpp",token);
+                console.log(otp, "otpp", token);
                 if (token == otp) {
                     const hash = await argon2.hash(password);
                     // await credModel.create({ email, hash, name });
-                    const tempToken =  jwt.sign({ email, password, name },"BLOG@#WALA",{expiresIn:"24 hr"})
+                    const tempToken = jwt.sign({ email, password, name }, "BLOG@#WALA", { expiresIn: "24 hr" })
                     // const refreshToken = jwt.sign({},"BLOG@#WALA",{expiresIn:"30 day"})
-                    return {tempToken:tempToken}
-                   
+                    return { tempToken: tempToken }
+
                 } else {
                     return "Wrong OTP or Expired"
                 }
@@ -71,31 +71,31 @@ const credController = {
             return e.message
         }
     },//create Done
-
-    getNewToken: async(token) => {
-        try{
-            let verify = jwt.verify(token,"BLOG@#WALA")
-            if(verify){
-              let newToken = jwt.sign({},"BLOG@#WALA");
-              return newToken
-            }else{
-          return "Token Expired"
-            }            
-        }catch(e){
+    //
+    getNewToken: async (token) => {
+        try {
+            let verify = jwt.verify(token, "BLOG@#WALA")
+            if (verify) {
+                let newToken = jwt.sign({}, "BLOG@#WALA");
+                return newToken
+            } else {
+                return "Token Expired"
+            }
+        } catch (e) {
             return e.message
-        }       
+        }
     },
-    verifyToken: async(token) => {
-        try{
-            let verify = jwt.verify(token,"BLOG@#WALA")
-            if(verify){
-              return true
-            }else{
-          return "Token Expired"
-            }            
-        }catch(e){
+    verifyToken: async (token) => {
+        try {
+            let verify = jwt.verify(token, "BLOG@#WALA")
+            if (verify) {
+                return true
+            } else {
+                return "Token Expired"
+            }
+        } catch (e) {
             return e.message
-        }       
+        }
     }
 }
 module.exports = { credController }
