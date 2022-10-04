@@ -17,12 +17,12 @@ function Create() {
   const [form, setForm] = useState({});
   const [file, setFile] = useState();
 
-  // useEffect(() => {
-  //   if (value) {
-  //     onFileUpload();
-  //     setValue(false);
-  //   }
-  // }, [value]);
+  useEffect(() => {
+    if (value) {
+      onFileUpload();
+      setValue(false);
+    }
+  }, [value]);
 
   const onFileUpload = async () => {
     var formdata = new FormData();
@@ -41,13 +41,12 @@ function Create() {
     fetch("https://api.imgur.com/3/image/", requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        console.log(result,"result")
-        // var imageUrl = (name,files)=>{
-          setForm({
-            ...form,
-            file: result.data.link,
-          });
-        // }
+        console.log(result.data)
+        // setForm({
+        //   ...form,
+        //   file: result.data
+        // });
+        console.log(form);
       })
       .catch((error) => console.log("error", error));
   };
@@ -60,10 +59,9 @@ function Create() {
       //   [name]: files,
       // });
       setFile({ file: files[0] });
-      let k = await onFileUpload();
-      console.log(k,"dekho es bar");
-      // setValue(true);
-      // await imageUrl(name,files)
+      // let k = await onFileUpload();
+      // console.log(k,"dekho es bar");
+      setValue(true);
     } else {
       setForm({
         ...form,
