@@ -41,12 +41,12 @@ function Create() {
     fetch("https://api.imgur.com/3/image/", requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        console.log(result)
+        console.log(result,"result")
         // setForm({
         //   ...form,
         //   file: result.data
         // });
-        console.log(form);
+        console.log(form,"kuch form");
       })
       .catch((error) => console.log("error", error));
   };
