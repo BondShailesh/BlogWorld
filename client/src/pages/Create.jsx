@@ -45,7 +45,7 @@ function Create() {
         console.log(result,"result hai ye hi")
         setForm({
           ...form,
-          file: result
+          file: result.data.link
         });
         console.log(form,"kuch form");
       })
