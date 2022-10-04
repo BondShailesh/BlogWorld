@@ -71,8 +71,8 @@ function Create() {
     }
   };
   const handleForm = async () => {
-    console.log(form);
-    console.log(file);
+    console.log(form,"forrrm");
+    console.log(file,"filllllle");
     // let res = await axios.post("http://localhost:8080/blogs",{...form})
     // console.log(res.data);
   };
