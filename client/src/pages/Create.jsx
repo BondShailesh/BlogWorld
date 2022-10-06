@@ -44,7 +44,7 @@ function Create() {
         console.log(result,"result hai ye hi")
           setForm({
             ...form,
-            [imageName]: JSON.stringify(result.data.link)
+            [imageName]: result.data.link
           });  
       })
       .catch((error) => {
@@ -70,7 +70,7 @@ function Create() {
     const date = new Date().toISOString().split('T')[0]
     setForm({
       ...form,
-      date: JSON.stringify(date),
+      date: date,
     });
     console.log(typeof(form.date),"img button");
     console.log(form,"form butt");
@@ -80,7 +80,7 @@ function Create() {
 
   return (
     <FormControl m="auto" mt="20px" w="97%" p="20px">
-      <Heading fontStyle='inherit'>Start your creative Journey Today</Heading>
+      <Heading color='grey' fontStyle='inherit'>Start your writing Journey Today</Heading>
       {/* Top Section-------------- */}
       <FormControl>
         <Input
@@ -124,7 +124,7 @@ function Create() {
       </FormControl>
 
       {/* Body part of blog */}
-      <Heading fontStyle='italic'>Blog Body</Heading>
+      <Heading  color='grey' fontStyle='italic'>Blog Body</Heading>
 
       <Box border="1px dotted green" mt="30px" bg="yellow.50">
         <Input
