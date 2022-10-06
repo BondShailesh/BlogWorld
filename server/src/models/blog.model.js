@@ -38,6 +38,12 @@ const blogSchema = new mongoose.Schema({
   date: String,
   love: Number,
   followers: Number,
+  sub1image:String,
+  sub2image:String,
+  sub3image:String,
+  sub4image:String,
+  sub5image:String,
+  propic:String,
   comments: [{}],
   cred:
   {

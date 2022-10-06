@@ -29,8 +29,6 @@ function Create() {
     var formdata = new FormData();
     formdata.append("image", file.file);
     formdata.append("type", file);
-    console.log(file.file, "file");
-
     var requestOptions = {
       method: "POST",
       headers: {
@@ -39,7 +37,6 @@ function Create() {
       body: formdata,
       redirect: "follow",
     };
-
     fetch("https://api.imgur.com/3/image/", requestOptions)
       .then((response) => response.text())
       .then((result) => {
@@ -47,11 +44,12 @@ function Create() {
         console.log(result,"result hai ye hi")
           setForm({
             ...form,
-            [imageName]: result.data.link
-          });
-        console.log(imageName,"image near res");    
+            [imageName]: JSON.stringify(result.data.link)
+          });  
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => {
+        alert("image could not load try next time")
+      });
   };
 
   const handleChange = async (e) => {
@@ -67,13 +65,14 @@ function Create() {
       });
     }
   };
+
   const handleForm = async () => {
     const date = new Date().toISOString().split('T')[0]
     setForm({
       ...form,
-      date: date,
+      date: JSON.stringify(date),
     });
-    console.log(imageName,"img button");
+    console.log(typeof(form.date),"img button");
     console.log(form,"form butt");
     let res = await axios.post("http://localhost:8080/blogs",{...form})
     console.log(res.data,"responce form server");
@@ -81,7 +80,7 @@ function Create() {
 
   return (
     <FormControl m="auto" mt="20px" w="97%" p="20px">
-      <Heading>Start your creative Journey Today</Heading>
+      <Heading fontStyle='inherit'>Start your creative Journey Today</Heading>
       {/* Top Section-------------- */}
       <FormControl>
         <Input
@@ -138,7 +137,7 @@ function Create() {
         <Text onChange={handleChange}  color="red.400">
           {" "}
           <span pr="34px">Choose subtitle 1 pic</span>{" "}
-          <input type="file" accept="image/*" name="sum1image" />
+          <input type="file" accept="image/*" name="sub1image" />
         </Text>
         <Textarea
           onChange={handleChange}
@@ -173,7 +172,7 @@ function Create() {
         <Text onChange={handleChange}  color="red.400">
           {" "}
           <span pr="34px">Choose sub-title 2 pic </span>{" "}
-          <input type="file" accept="image/*" name="sum2image"/>
+          <input type="file" accept="image/*" name="sub2image"/>
         </Text>
         <Textarea
           onChange={handleChange}
@@ -208,7 +207,7 @@ function Create() {
         <Text onChange={handleChange} color="red.400">
           {" "}
           <span pr="34px">Choose Subtitle 3 pic </span>{" "}
-          <input type="file" accept="image/*" name="sum3image"/>
+          <input type="file" accept="image/*" name="sub3image"/>
         </Text>
         <Textarea
           onChange={handleChange}
@@ -243,7 +242,7 @@ function Create() {
         <Text onChange={handleChange} name="propic" color="red.400">
           {" "}
           <span pr="34px">Choose sub-titile 4 pic </span>{" "}
-          <input type="file" accept="image/*" name="sum4image"/>
+          <input type="file" accept="image/*" name="sub4image"/>
         </Text>
         <Textarea
           onChange={handleChange}
@@ -278,7 +277,7 @@ function Create() {
         <Text onChange={handleChange} name="propic" color="red.400">
           {" "}
           <span pr="34px">Choose sub-title 5 pic </span>{" "}
-          <input type="file" accept="image/*" name="sum5image"/>
+          <input type="file" accept="image/*" name="sub5image"/>
         </Text>
         <Textarea
           onChange={handleChange}
