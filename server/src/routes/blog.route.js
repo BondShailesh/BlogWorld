@@ -51,14 +51,14 @@ blogRouter.delete("/:id", async (req, res) => {
     }
 })
 
-// blogRouter.patch("/:id", async (req, res) => {
-//     try {
-//         let user = await blogModelupdateOne({ _id: req.params.id }, { $set: { ...req.body } })
-//         res.send(user)
-//     } catch (e) {
-//         res.status(401).send(e.message);
-//         console.log("something");
-//     }
-// })
+blogRouter.patch("/:id", async (req, res) => {
+    try {
+        let user = await blogModel.updateOne({ _id: req.params.id }, { $set: { ...req.body } })
+        res.send(user)
+    } catch (e) {
+        res.status(401).send(e.message);
+        console.log("something");
+    }
+})
 
 module.exports = blogRouter

@@ -4,9 +4,9 @@ import {
   Heading,
   HStack,
   Image,
-  Link,
   Text,
   Textarea,
+  useMediaQuery,
   VStack,
 } from "@chakra-ui/react";
 import { BsInstagram, BsFacebook, BsTwitter, BsLinkedin } from "react-icons/bs";
@@ -15,34 +15,104 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { PATCH_BLOG_API } from "../store/blog/blog.action";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Blog() {
+  let {id} = useParams();
+  // console.log(param,"params");
+  const [
+    isLargerthan841px,
+    isLargerthan421px,
+    issmallerthan840px,
+    issmallerthan420px,
+  ] = useMediaQuery([
+    "(min-width: 840px)",
+    "(min-width: 421px)",
+    "(max-width: 840px)",
+    "(max-width: 420px)",
+  ]);
   const [data, setdata] = useState({});
+  const [comment, setComment] = useState([]);
+  const [like, setLike] = useState();
+  const [followers, setFollowers] = useState();
+  const [comments, setComments] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  let width = "99%";
+  if (issmallerthan840px) {
+    width = "97%";
+  }
+  const handleLike = () => {
+    let lov = data.love;
+    lov = lov + 1;
+    setLike(data.lov);
+    dispatch(PATCH_BLOG_API({ love: lov, id: id }));
+  };
+
+  const handleFollow = () => {
+    let Currfollow = data.followers;
+    Currfollow = Currfollow + 1;
+    setFollowers(data.Currfollow);
+    dispatch(
+      PATCH_BLOG_API({ followers: Currfollow, id: id })
+    );
+  };
+
+  const handleComments = () => {
+    let CurrComments = data.comments;
+    CurrComments.push();
+    setComment(data.CurrComments);
+    dispatch(
+      PATCH_BLOG_API({ comments: CurrComments, id: id })
+    );
+  };
 
   useEffect(() => {
     const getData = async () => {
       let res = await axios.get(
-        "http://localhost:8080/blogs/6337324e6211402fc69ac8c0"
+        `http://localhost:8080/blogs/${id}`
       );
       setdata(res.data[0]);
+      setLike(res.data[0].love);
+      setFollowers(res.data[0].followers);
+      setComments(res.data[0].comments);
     };
     getData();
-  }, []);
+  }, [like, followers, comment]);
 
   return (
-    <Box color="#3E3C3D" >
-      <Box w="90%" m="auto" display="flex" justifyContent="space-evenly">
-        <Box w="70%" border="1px solid grey" display="flex">
+    <Box color="#3E3C3D">
+      <Box
+        w="90%"
+        m="auto"
+        display="flex"
+        justifyContent="space-evenly"
+        textAlign="left"
+      >
+        <Box
+          w={width}
+          borderLeft="0.5px dotted grey"
+          borderRight="1px dotted grey"
+          display="flex"
+        >
           <Box w="90%" m="auto" justifySelf="center">
-            <Heading textShadow="2xl" mt="20px" mb="14px" fontFamily="Cursive">{data.title}</Heading>
+            <Heading
+              textAlign="center"
+              textShadow="2xl"
+              mt="20px"
+              mb="14px"
+              fontFamily="Cursive"
+            >
+              {data.title}
+            </Heading>
             <Box display="flex" justifyContent="right" color="blue.600">
-              <Text >15/09/2022</Text>
-              <Text ml={["12px", "30px"]} >3 min read</Text>
+              <Text>15/09/2022</Text>
+              <Text ml={["12px", "30px"]}>3 min read</Text>
             </Box>
-            <Text>{data.description}</Text>
-            <br />
-            <br />
-            <br />
+            <Text textAlign="center">{data.description}</Text>
 
             <VStack m="30px">
               {data.subOne ? (
@@ -150,57 +220,66 @@ function Blog() {
 
             <Box color="red" display="flex" justifyContent="space-evenly">
               <HStack>
-                <MdFavorite size="34px" />
+                <Text>{like}</Text>
+                <MdFavorite cursor="pointer" onClick={handleLike} size="34px" />
               </HStack>
 
               <HStack m="19px">
-              <a target ="_blank" href="www.facebook.com">  <BsFacebook size="28px" color="rgb(9, 126, 235)" /></a>
+                <a target="_blank" href="www.facebook.com">
+                  {" "}
+                  <BsFacebook size="28px" color="rgb(9, 126, 235)" />
+                </a>
                 <BsInstagram size="28px" />
                 <BsLinkedin color="rgb(9, 126, 235)" size="28px" />
                 <BsTwitter color="rgb(9, 126, 235)" size="28px" />
               </HStack>
             </Box>
+
             <Heading>Comments</Heading>
-            <Textarea mt="20px" mb="12px" placeholder="Your Comments" />
-            <Box h="100vh" border="1px solid black">
-              <Box textAlign="left" ml="20px" mb="10px">
-                <Text fontSize="20px" color="red">
-                  Shailesh
-                </Text>
-                <Text fontSize="14px">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-                  natus harum accusamus veritatis et nesciunt atque blanditiis,
-                  possimus repellat distinctio officiis doloremque veniam
-                  aperiam alias ullam voluptatum in necessitatibus nisi debitis
-                  dolore dicta provident!
-                </Text>
-              </Box>
-              <Box textAlign="left" ml="20px">
-                <Text fontSize="20px">Shailesh</Text>
-                <Text fontSize="14px">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Sapiente non voluptas, voluptates, maxime minus accusamus
-                  consectetur assumenda aliquid, recusandae repudiandae ea
-                  voluptatibus sed iusto. Ab blanditiis deleniti possimus illum
-                  cum voluptas porro eligendi quisquam!
-                </Text>
-              </Box>
+            <Box display="flex" alignItems="center">
+              <Textarea
+                onChange={(e) => setComment(e.target.value)}
+                mt="20px"
+                mb="12px"
+                placeholder="Your Comments"
+              />
+              <Button ml="7px" bg="green.300" onClick={handleComments}>
+                Post
+              </Button>
+            </Box>
+
+            <Box h="400px" border="1px solid black">
+              {comments
+                ? comments.map((el) => (
+                    <Box key={el._id} textAlign="left" ml="20px" mb="10px">
+                      <Text fontSize="20px" color="red">
+                        {Object.keys(el)}
+                      </Text>
+                      <Text fontSize="14px">{Object.values(el)}</Text>
+                    </Box>
+                  ))
+                : ""}
             </Box>
           </Box>
         </Box>
-
-        <Box position="sticky" mt="0px" mr="20px" w="30%" h="100vh">
-          <VStack>
-            <Image
-              borderRadius="50%"
-              src="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/51fuD3e0BAL._AC_SY200_.jpg"
-            />
-            <Text>Shailesh</Text>
-            <Text>100 Followers</Text>
-            <Button>Follow</Button>
-            <Heading>More from Shailesh</Heading>
-          </VStack>
-        </Box>
+        {/* //Other part of box */}
+        {isLargerthan841px ? (
+          <Box position="sticky" mt="0px" mr="20px" w="30%" h="100vh">
+            <VStack>
+              <Image
+                borderRadius="50%"
+                width="50%"
+                src="https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-unknown-social-media-user-photo-default-avatar-profile-icon-vector-unknown-social-media-user-184816085.jpg"
+              />
+              <Text>{data.writer}</Text>
+              <Text color="green">{followers} Followers</Text>
+              <Button onClick={handleFollow}>Follow</Button>
+              <Text fontSize="23px">More from {data.writer}</Text>
+            </VStack>
+          </Box>
+        ) : (
+          ""
+        )}
       </Box>
     </Box>
   );

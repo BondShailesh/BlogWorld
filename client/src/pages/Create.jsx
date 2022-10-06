@@ -71,8 +71,12 @@ function Create() {
     }
   };
   const handleForm = async () => {
-    console.log(form,"forrrm");
-    console.log(file,"filllllle");
+    const date =new Date().toISOString().split('T')[0]
+    setForm({
+      ...form,
+      date: date,
+    });
+    console.log(form);
     // let res = await axios.post("http://localhost:8080/blogs",{...form})
     // console.log(res.data);
   };

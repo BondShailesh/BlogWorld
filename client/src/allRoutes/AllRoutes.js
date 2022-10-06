@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Routes } from "react-router-dom";
 import Blog from '../pages/Blog';
 import Create from '../pages/Create';
+import Homepage from '../pages/Homepage';
 import Login from '../pages/Login';
 import OTPValidator from '../pages/Otpvalidator';
 import Signup from '../pages/Signup';
@@ -11,7 +12,8 @@ function AllRoutes() {
     return (
         <div>
             <Routes>
-                <Route path='/' element={<Blog />} />
+                <Route path='/' element={<Homepage />} />
+                <Route path='/blog/:id' element={<Blog />} />
                 <Route path='/create' element={
                 <PrivateRoute>
                 <Create />

@@ -71,7 +71,7 @@ const credController = {
             return e.message
         }
     },//create Done
-    //
+   
     getNewToken: async (token) => {
         try {
             let verify = jwt.verify(token, "BLOG@#WALA")
