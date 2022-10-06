@@ -54,7 +54,7 @@ export default function Nav() {
   }
 
   const handleLogout = () => {
-    localStorage.removeItem("")
+    localStorage.removeItem("token")
   }
   const handleSearch = ()=>{
     

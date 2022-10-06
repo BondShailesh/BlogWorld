@@ -83,7 +83,7 @@ function Create() {
   };
 
   return (
-    <FormControl m="auto" mt="20px" w="97%" p="20px">
+    <FormControl m="auto" mt="95px" w="97%" p="20px">
       <Heading color='grey' fontStyle='inherit'>Start your writing Journey Today</Heading>
       {/* Top Section-------------- */}
       <FormControl>

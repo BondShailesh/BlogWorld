@@ -10,12 +10,13 @@ function Login() {
     return (
         <Box w={["full", "md"]}
             p={[8, 10]}
-            mt="20px"
+            mt={['95px','95px']}
             mx="auto"
             border={["none", "1px"]}
             borderColor={["", "gray.300"]}
             borderRadius={10}
-            boxShadow='xl'>
+            boxShadow='xl'
+            mb='15px'>
 
             <VStack spacing={4}
                 align="flex-start"

@@ -76,7 +76,7 @@ function Blog() {
   }, [like, followers, comment]);
 
   return (
-    <Box color="#3E3C3D" mt={['60px','60px']}>
+    <Box color="#3E3C3D" mt={['90px','90px']}>
       <Box
         w="90%"
         m="auto"
