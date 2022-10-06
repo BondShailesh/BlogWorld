@@ -16,7 +16,8 @@ function Create() {
   const [value, setValue] = useState(false);
   const [form, setForm] = useState({});
   const [file, setFile] = useState();
-  const [imageName,setImageName] = useState({})
+  const [imageName,setImageName] = useState()
+
   useEffect(() => {
     if (value) {
       onFileUpload();
@@ -29,6 +30,7 @@ function Create() {
     formdata.append("image", file.file);
     formdata.append("type", file);
     console.log(file.file, "file");
+
     var requestOptions = {
       method: "POST",
       headers: {
@@ -47,8 +49,7 @@ function Create() {
             ...form,
             [imageName]: result.data.link
           });
-
-     
+        console.log(imageName,"image near res");    
       })
       .catch((error) => console.log("error", error));
   };
@@ -56,14 +57,8 @@ function Create() {
   const handleChange = async (e) => {
     let { name, value, type, files } = e.target;
     if (type === "file") {
-      setImageName({
-        ...imageName,
-        [name]: files,
-      });
-      // let name = [name]
-      // setImageName(name)
+       setImageName(name)
       setFile({ file: files[0] });
-      // console.log(k,"dekho es bar");
       setValue(true);
     } else {
       setForm({
@@ -73,14 +68,15 @@ function Create() {
     }
   };
   const handleForm = async () => {
-    const date =new Date().toISOString().split('T')[0]
+    const date = new Date().toISOString().split('T')[0]
     setForm({
       ...form,
       date: date,
     });
-    console.log(form);
+    console.log(imageName,"img button");
+    console.log(form,"form butt");
     // let res = await axios.post("http://localhost:8080/blogs",{...form})
-    // console.log(res.data);
+    // console.log(res.data,"responce form server");
   };
 
   return (
@@ -129,7 +125,7 @@ function Create() {
       </FormControl>
 
       {/* Body part of blog */}
-      <Heading>Blog Body</Heading>
+      <Heading fontStyle='italic'>Blog Body</Heading>
 
       <Box border="1px dotted green" mt="30px" bg="yellow.50">
         <Input
@@ -139,12 +135,11 @@ function Create() {
           fontSize={["14px", "28px"]}
           placeholder="Sub-title-1"
         />
-        <Text onChange={handleChange} name="propic" color="red.400">
+        <Text onChange={handleChange}  color="red.400">
           {" "}
-          <span pr="34px">Choose your profile pic </span>{" "}
-          <input type="file" name="image" />
+          <span pr="34px">Choose subtitle 1 pic</span>{" "}
+          <input type="file" accept="image/*" name="sum1image" />
         </Text>
-        {/* accept="image/*" */}
         <Textarea
           onChange={handleChange}
           name="desOne1"
@@ -175,10 +170,10 @@ function Create() {
           fontSize={["14px", "28px"]}
           placeholder="Sub-title-2"
         />
-        <Text onChange={handleChange} name="propic" color="red.400">
+        <Text onChange={handleChange}  color="red.400">
           {" "}
-          <span pr="34px">Choose your profile pic </span>{" "}
-          <input type="file" accept="image/*" />
+          <span pr="34px">Choose sub-title 2 pic </span>{" "}
+          <input type="file" accept="image/*" name="sum2image"/>
         </Text>
         <Textarea
           onChange={handleChange}
@@ -210,10 +205,10 @@ function Create() {
           fontSize={["14px", "28px"]}
           placeholder="Sub-title-3"
         />
-        <Text onChange={handleChange} name="propic" color="red.400">
+        <Text onChange={handleChange} color="red.400">
           {" "}
-          <span pr="34px">Choose your profile pic </span>{" "}
-          <input type="file" accept="image/*" />
+          <span pr="34px">Choose Subtitle 3 pic </span>{" "}
+          <input type="file" accept="image/*" name="sum3image"/>
         </Text>
         <Textarea
           onChange={handleChange}
@@ -247,8 +242,8 @@ function Create() {
         />
         <Text onChange={handleChange} name="propic" color="red.400">
           {" "}
-          <span pr="34px">Choose your profile pic </span>{" "}
-          <input type="file" name="file" accept="image/*" />
+          <span pr="34px">Choose sub-titile 4 pic </span>{" "}
+          <input type="file" accept="image/*" name="sum4image"/>
         </Text>
         <Textarea
           onChange={handleChange}
@@ -282,8 +277,8 @@ function Create() {
         />
         <Text onChange={handleChange} name="propic" color="red.400">
           {" "}
-          <span pr="34px">Choose your profile pic </span>{" "}
-          <input type="file" accept="image/*" />
+          <span pr="34px">Choose sub-title 5 pic </span>{" "}
+          <input type="file" accept="image/*" name="sum5image"/>
         </Text>
         <Textarea
           onChange={handleChange}
@@ -324,7 +319,7 @@ function Create() {
         <Text onChange={handleChange} name="propic" color="red.400">
           {" "}
           <span pr="34px">Choose your profile pic </span>{" "}
-          <input type="file" accept="image/*" />
+          <input type="file" accept="image/*" name='propic'/>
         </Text>
         <Input
           onChange={handleChange}
