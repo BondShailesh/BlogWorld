@@ -1,4 +1,4 @@
-import { Box, Heading, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
 import { BsInstagram, BsFacebook, BsTwitter, BsLinkedin } from "react-icons/bs";
 function Footer() {

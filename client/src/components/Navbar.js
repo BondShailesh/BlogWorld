@@ -61,7 +61,14 @@ export default function Nav() {
   }
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} boxShadow="2xl">
+      <Box bg={useColorModeValue('gray.100', 'gray.900')} 
+      px={4} 
+      boxShadow="2xl"
+      position='fixed'
+      top='0'
+      w='100%'
+      zIndex='9'
+      >
         <Flex h={20}  alignItems={'center'} justifyContent={'space-around'} alignItem="center">
           <Box>
             <Heading

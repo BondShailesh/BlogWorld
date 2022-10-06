@@ -47,7 +47,7 @@ function Blogs() {
         paddingLeft="5%"
         paddingRight="5%"
         paddingTop="70px"
-        pb='50px'
+        pb={['20px','50px']}
       >
         <Heading textAlign='center' fontStyle='italic'>Blogs</Heading>
         {data.map((el) => (
