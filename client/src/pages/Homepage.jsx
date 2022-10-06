@@ -17,7 +17,7 @@ function Homepage() {
        position='absolute'
        left={['0%','0%','0%']}
        right={['0%','0%','0%']}
-       top={['19%','13%']}  
+       top={['10%','13%']}  
         >
         <Heading fontSize={['16px','20px','34px']}>Publish your passions, your way</Heading>
         <Text mt={['5px','20px']}>Create a unique and beautiful blog easily.</Text>

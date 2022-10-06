@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { Box, Text, useMediaQuery } from "@chakra-ui/react";
+import { Box, Heading, Text, useMediaQuery } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 function Blogs() {
   const [data, setData] = useState([]);
@@ -19,7 +19,7 @@ function Blogs() {
   useEffect(() => {
     const getData = async () => {
       let res = await axios.get(
-        "http://localhost:8080/blogs/6337324e6211402fc69ac8c0"
+        "http://localhost:8080/blogs"
       );
       setData(res.data);
     };
@@ -39,18 +39,19 @@ function Blogs() {
       justifyContent="space-evenly"
       textAlign="left"    
     >
+      
       <Box
         w={width}
         borderLeft="0.5px dotted grey"
         borderRight="1px dotted grey"
-        display="flex"
         paddingLeft="5%"
         paddingRight="5%"
         paddingTop="70px"
         pb='50px'
       >
+        <Heading textAlign='center' fontStyle='italic'>Blogs</Heading>
         {data.map((el) => (
-          <Box borderTop="1px solid grey" w="100%" p="5px" >
+          <Box borderTop="1px solid grey" w="100%" p="5px" m='30px'>
           <Link to= {`/blog/${el._id}`} key={el._id}>
             <Box >
             <Box display="flex" justifyContent="space-around">

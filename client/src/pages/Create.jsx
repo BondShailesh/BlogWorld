@@ -73,7 +73,11 @@ function Create() {
   };
 
   const handleForm = async () => {
-    console.log(form,"form butt");
+    setForm({
+      ...form,
+      love: 0,
+      followers:0
+    });
     let res = await axios.post("http://localhost:8080/blogs",{...form})
     console.log(res.data,"responce form server");
   };

@@ -15,13 +15,12 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { PATCH_BLOG_API } from "../store/blog/blog.action";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function Blog() {
-  let {id} = useParams();
-  // console.log(param,"params");
+  let { id } = useParams();
   const [
     isLargerthan841px,
     isLargerthan421px,
@@ -39,7 +38,6 @@ function Blog() {
   const [followers, setFollowers] = useState();
   const [comments, setComments] = useState();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   let width = "99%";
   if (issmallerthan840px) {
@@ -56,25 +54,19 @@ function Blog() {
     let Currfollow = data.followers;
     Currfollow = Currfollow + 1;
     setFollowers(data.Currfollow);
-    dispatch(
-      PATCH_BLOG_API({ followers: Currfollow, id: id })
-    );
+    dispatch(PATCH_BLOG_API({ followers: Currfollow, id: id }));
   };
 
   const handleComments = () => {
     let CurrComments = data.comments;
     CurrComments.push();
     setComment(data.CurrComments);
-    dispatch(
-      PATCH_BLOG_API({ comments: CurrComments, id: id })
-    );
+    dispatch(PATCH_BLOG_API({ comments: CurrComments, id: id }));
   };
 
   useEffect(() => {
     const getData = async () => {
-      let res = await axios.get(
-        `http://localhost:8080/blogs/${id}`
-      );
+      let res = await axios.get(`http://localhost:8080/blogs/${id}`);
       setdata(res.data[0]);
       setLike(res.data[0].love);
       setFollowers(res.data[0].followers);
@@ -122,11 +114,7 @@ function Blog() {
               ) : (
                 ""
               )}
-              <Image
-                w="100%"
-                height="300px"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/91kAtEXPIeL._AC_UL320_.jpg"
-              />
+              {data.sub1image && <Image src={data.sub1image} />}
               {data.desOne1 ? <Text>{data.desOne1}</Text> : ""}
               {data.desOne2 ? <Text>{data.desOne2}</Text> : ""}
               {data.desOne3 ? <Text>{data.desOne3}</Text> : ""}
@@ -134,18 +122,14 @@ function Blog() {
             </VStack>
 
             <VStack m="30px">
-              {data.subOne ? (
+              {data.subTwo ? (
                 <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize="30px">
                   {data.subTwo}
                 </Heading>
               ) : (
                 ""
               )}
-              <Image
-                w="100%"
-                height="300px"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/91kAtEXPIeL._AC_UL320_.jpg"
-              />
+              {data.sub2image && <Image src={data.sub2image} />}
               {data.desTwo2 ? <Text>{data.desTwo1}</Text> : ""}
               {data.desTwo2 ? <Text>{data.desTwo2}</Text> : ""}
               {data.desTwo3 ? <Text>{data.desTwo3}</Text> : ""}
@@ -153,18 +137,14 @@ function Blog() {
             </VStack>
 
             <VStack m="30px">
-              {data.subOne ? (
+              {data.subThree ? (
                 <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize="30px">
                   {data.subThree}
                 </Heading>
               ) : (
                 ""
               )}
-              <Image
-                w="100%"
-                height="300px"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/91kAtEXPIeL._AC_UL320_.jpg"
-              />
+              {data.sub3image && <Image src={data.sub3image} />}
               {data.desThree1 ? <Text>{data.desThree1}</Text> : ""}
               {data.desThree2 ? <Text>{data.desThree2}</Text> : ""}
               {data.desThree3 ? <Text>{data.desThree3}</Text> : ""}
@@ -172,18 +152,14 @@ function Blog() {
             </VStack>
 
             <VStack m="30px">
-              {data.subOne ? (
+              {data.subFour ? (
                 <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize="30px">
                   {data.subFour}
                 </Heading>
               ) : (
                 ""
               )}
-              <Image
-                w="100%"
-                height="300px"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/91kAtEXPIeL._AC_UL320_.jpg"
-              />
+              {data.sub4image && <Image src={data.sub4image} />}
               {data.desFour1 ? <Text>{data.desFour1}</Text> : ""}
               {data.desFour2 ? <Text>{data.desFour2}</Text> : ""}
               {data.desFour3 ? <Text>{data.desFour3}</Text> : ""}
@@ -191,18 +167,14 @@ function Blog() {
             </VStack>
 
             <VStack m="30px">
-              {data.subOne ? (
+              {data.subFive ? (
                 <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize="30px">
                   {data.subFive}
                 </Heading>
               ) : (
                 ""
               )}
-              <Image
-                w="100%"
-                height="300px"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/91kAtEXPIeL._AC_UL320_.jpg"
-              />
+              {data.sub5image && <Image src={data.sub5image} />}
               {data.desFive1 ? <Text>{data.desFive1}</Text> : ""}
               {data.desFive2 ? <Text>{data.desFive2}</Text> : ""}
               {data.desFive3 ? <Text>{data.desFive3}</Text> : ""}
@@ -210,13 +182,7 @@ function Blog() {
             </VStack>
 
             <Heading>More Blogs...</Heading>
-            <Text>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
-              dolore temporibus, earum delectus aperiam quam quos autem
-              consequuntur! Accusamus, quaerat laudantium nihil qui quod
-              pariatur illum esse voluptatum a. Mollitia harum sapiente saepe
-              libero?
-            </Text>
+            <Text>Not available</Text>
 
             <Box color="red" display="flex" justifyContent="space-evenly">
               <HStack>
@@ -264,7 +230,7 @@ function Blog() {
         </Box>
         {/* //Other part of box */}
         {isLargerthan841px ? (
-          <Box position="sticky" mt="0px" mr="20px" w="30%" h="100vh">
+          <Box position="sticky" mt="12px" mr="20px" w="30%" h="100vh">
             <VStack>
               <Image
                 borderRadius="50%"
