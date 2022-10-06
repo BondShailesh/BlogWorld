@@ -18,9 +18,7 @@ function Blogs() {
   ]);
   useEffect(() => {
     const getData = async () => {
-      let res = await axios.get(
-        "http://localhost:8080/blogs"
-      );
+      let res = await axios.get("http://localhost:8080/blogs");
       setData(res.data);
     };
     getData();
@@ -37,35 +35,36 @@ function Blogs() {
       m="auto"
       display="flex"
       justifyContent="space-evenly"
-      textAlign="left"    
+      textAlign="left"
     >
-      
       <Box
         w={width}
         borderLeft="0.5px dotted grey"
         borderRight="1px dotted grey"
         paddingLeft="5%"
         paddingRight="5%"
-        paddingTop="70px"
-        pb={['10px','40px']}
+        paddingTop={["20px", "50px"]}
+        pb={["20px", "40px"]}
       >
-        <Heading textAlign='center' fontStyle='italic'>Blogs</Heading>
+        <Heading textAlign="center" fontStyle="italic">
+          Blogs
+        </Heading>
         {data.map((el) => (
-          <Box borderTop="1px solid grey" w="100%" p="5px" m='30px'>
-          <Link to= {`/blog/${el._id}`} key={el._id}>
-            <Box >
-            <Box display="flex" justifyContent="space-around">
-                <Text>{el.writer}</Text>
-                <Text>{el.date}</Text>
+          <Box borderTop="1px solid grey" w="100%" p="5px" m="30px">
+            <Link to={`/blog/${el._id}`} key={el._id}>
+              <Box>
+                <Box display="flex" justifyContent="space-around">
+                  <Text>{el.writer}</Text>
+                  <Text>{el.date}</Text>
+                </Box>
+                <Text fontSize={["23px", "34px"]}>{el.title}</Text>
+                <Text>{el.description}</Text>
               </Box>
-              <Text fontSize={["23px", "34px"]}>{el.title}</Text>
-              <Text>{el.description}</Text>
-            </Box>
-          </Link>
+            </Link>
           </Box>
         ))}
       </Box>
-      {isLargerthan841px && <Box w='30%'></Box>}
+      {isLargerthan841px && <Box w="30%"></Box>}
     </Box>
   );
 }

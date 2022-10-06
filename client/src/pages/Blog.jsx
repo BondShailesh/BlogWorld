@@ -76,7 +76,7 @@ function Blog() {
   }, [like, followers, comment]);
 
   return (
-    <Box color="#3E3C3D" mt={['90px','90px']}>
+    <Box color="#3E3C3D" mt={["90px", "90px"]}>
       <Box
         w="90%"
         m="auto"
@@ -101,7 +101,7 @@ function Blog() {
               {data.title}
             </Heading>
             <Box display="flex" justifyContent="right" color="blue.600">
-              <Text>15/09/2022</Text>
+              <Text>{data.date}</Text>
               <Text ml={["12px", "30px"]}>3 min read</Text>
             </Box>
             <Text textAlign="center">{data.description}</Text>

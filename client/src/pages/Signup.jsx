@@ -45,7 +45,7 @@ function Signup() {
     <Box
       w={["full", "md"]}
       p={[8, 10]}
-      mt={['95px','95px']}
+      mt={['80px','95px']}
       mx="auto"
       border={["none", "1px"]}
       borderColor={["", "gray.300"]}
