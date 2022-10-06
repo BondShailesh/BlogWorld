@@ -16,7 +16,7 @@ function Create() {
   const [value, setValue] = useState(false);
   const [form, setForm] = useState({});
   const [file, setFile] = useState();
-  const [imageName,setImageName] = useState()
+  const [imageName,setImageName] = useState({})
   useEffect(() => {
     if (value) {
       onFileUpload();
@@ -56,12 +56,12 @@ function Create() {
   const handleChange = async (e) => {
     let { name, value, type, files } = e.target;
     if (type === "file") {
-      // setForm({
-      //   ...form,
-      //   [name]: files,
-      // });
-      let name = [name]
-      setImageName(name)
+      setImageName({
+        ...form,
+        [name]: files,
+      });
+      // let name = [name]
+      // setImageName(name)
       setFile({ file: files[0] });
       // console.log(k,"dekho es bar");
       setValue(true);
