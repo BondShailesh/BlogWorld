@@ -16,7 +16,7 @@ function Create() {
   const [value, setValue] = useState(false);
   const [form, setForm] = useState({});
   const [file, setFile] = useState();
-
+  const [imageName,setImageName] = useState()
   useEffect(() => {
     if (value) {
       onFileUpload();
@@ -43,11 +43,12 @@ function Create() {
       .then((result) => {
         result = JSON.parse(result)
         console.log(result,"result hai ye hi")
-        setForm({
-          ...form,
-          file: result.data.link
-        });
-        console.log(form,"kuch form");
+          setForm({
+            ...form,
+            [imageName]: result.data.link
+          });
+
+     
       })
       .catch((error) => console.log("error", error));
   };
@@ -59,8 +60,9 @@ function Create() {
       //   ...form,
       //   [name]: files,
       // });
+      let name = [name]
+      setImageName(name)
       setFile({ file: files[0] });
-      // let k = await onFileUpload();
       // console.log(k,"dekho es bar");
       setValue(true);
     } else {
