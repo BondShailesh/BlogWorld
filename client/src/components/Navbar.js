@@ -52,6 +52,13 @@ export default function Nav() {
   const handleWrite = () => {
     return navigate("/create")
   }
+
+  const handleLogout = () => {
+    localStorage.removeItem("")
+  }
+  const handleSearch = ()=>{
+    
+  }
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} boxShadow="2xl">
@@ -62,14 +69,14 @@ export default function Nav() {
               fontStyle="oblique"
               cursor="pointer"
               onClick={handleLogo}
-              w={['120px','300px']}
-              fontSize={['21px','27px','37px']}
+              w={['133px','300px']}
+              fontSize={['25px','27px','37px']}
             >Blog World</Heading>
           </Box>
           <Box mr={['18px']} mt="5px" display="flex" ml="10px" justifyContent="space-around" alignItem="center">
             <Input borderRadius="8px" placeholder="search blogs" />
             <Box bg="blue.200" borderRadius="8px" h="38px" p="5px" borderRight="1px dotted grey" borderTop="1px dotted grey" borderBottom="1px dotted grey">
-              <BsSearch cursor="pointer" size="25px" alignItems="center" />
+              <BsSearch onClick={handleSearch} cursor="pointer" size="25px" alignItems="center" />
             </Box>
           </Box>
           <Box>
@@ -107,7 +114,7 @@ export default function Nav() {
                   <MenuDivider />
                   <MenuItem onClick={handleWrite}>Write Blog</MenuItem>
                   <MenuItem onClick={handleLogin}>Login</MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </MenuList>
               </Menu>
               
