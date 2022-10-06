@@ -64,10 +64,10 @@ export default function Nav() {
       <Box bg={useColorModeValue('gray.100', 'gray.900')} 
       px={4} 
       boxShadow="2xl"
+      zIndex='9'
       position='fixed'
       top='0'
       w='100%'
-      zIndex='9'
       >
         <Flex h={20}  alignItems={'center'} justifyContent={'space-around'} alignItem="center">
           <Box>
