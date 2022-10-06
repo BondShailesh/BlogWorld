@@ -19,10 +19,16 @@ function Create() {
   const [imageName,setImageName] = useState()
 
   useEffect(() => {
+    const date = new Date().toISOString().split('T')[0]
+    setForm({
+      ...form,
+      date: date,
+    });
     if (value) {
       onFileUpload();
       setValue(false);
     }
+
   }, [value]);
 
   const onFileUpload = async () => {
@@ -67,12 +73,6 @@ function Create() {
   };
 
   const handleForm = async () => {
-    const date = new Date().toISOString().split('T')[0]
-    setForm({
-      ...form,
-      date: date,
-    });
-    console.log(typeof(form.date),"img button");
     console.log(form,"form butt");
     let res = await axios.post("http://localhost:8080/blogs",{...form})
     console.log(res.data,"responce form server");
