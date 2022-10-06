@@ -57,7 +57,7 @@ function Create() {
     let { name, value, type, files } = e.target;
     if (type === "file") {
       setImageName({
-        ...form,
+        ...imageName,
         [name]: files,
       });
       // let name = [name]
