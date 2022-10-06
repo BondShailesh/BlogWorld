@@ -62,21 +62,23 @@ export default function Nav() {
               fontStyle="oblique"
               cursor="pointer"
               onClick={handleLogo}
+              w={['120px','300px']}
+              fontSize={['21px','27px','37px']}
             >Blog World</Heading>
           </Box>
-          <Box mt="5px" display="flex" ml="10px" justifyContent="space-around" alignItem="center">
-            <Input borderRadius="8px" placeholder="search for blogs" />
+          <Box mr={['18px']} mt="5px" display="flex" ml="10px" justifyContent="space-around" alignItem="center">
+            <Input borderRadius="8px" placeholder="search blogs" />
             <Box bg="blue.200" borderRadius="8px" h="38px" p="5px" borderRight="1px dotted grey" borderTop="1px dotted grey" borderBottom="1px dotted grey">
               <BsSearch cursor="pointer" size="25px" alignItems="center" />
             </Box>
           </Box>
-
+          <Box>
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
               {/* <Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button> */}
-
+           
               <Menu>
                 <MenuButton
                   as={Button}
@@ -108,8 +110,11 @@ export default function Nav() {
                   <MenuItem>Logout</MenuItem>
                 </MenuList>
               </Menu>
+              
             </Stack>
           </Flex>
+          </Box>
+          
         </Flex>
       </Box>
     </>

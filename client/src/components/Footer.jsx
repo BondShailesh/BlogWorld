@@ -16,11 +16,12 @@ function Footer() {
     >
       <Box mb={["34px",'50px']}>
       <Heading fontSize={['16px','20px','34px']}>Connect with me</Heading>
-      <Box m="19px" display='flex' justifyContent='space-evenly'>       
-                 <BsFacebook mr='17px' size="28px" color="rgb(9, 126, 235)" />
-                <BsInstagram m='7px' size="28px" color='red'/>
-                <BsLinkedin color="rgb(9, 126, 235)" size="28px" />
-                <BsTwitter color="rgb(9, 126, 235)" size="28px" />
+      <Box w='120%' m="19px" ml='0' display='flex' justifyContent='space-evenly'>    
+       
+      <Box><BsFacebook mr='17px' size='28px' color="rgb(9, 126, 235)" /></Box> 
+      <Box>   <BsInstagram m='7px' size="28px" color='red'/></Box> 
+      <Box>  <BsLinkedin color="rgb(9, 126, 235)" size="28px" /></Box> 
+      <Box>   <BsTwitter color="rgb(9, 126, 235)" size="28px" /></Box> 
               </Box>
       </Box>
       <Heading fontSize={['16px','20px','34px']}>About me</Heading>
