@@ -4,6 +4,7 @@ const credSchema = new mongoose.Schema({
   email: { type: String, required: true },
   hash: { type: String, required: true },
   name: { type: String },
+  followers:Number,
   otp:Number,
   // data: [
   //   {

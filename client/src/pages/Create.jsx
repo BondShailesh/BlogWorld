@@ -75,8 +75,8 @@ function Create() {
     });
     console.log(imageName,"img button");
     console.log(form,"form butt");
-    // let res = await axios.post("http://localhost:8080/blogs",{...form})
-    // console.log(res.data,"responce form server");
+    let res = await axios.post("http://localhost:8080/blogs",{...form})
+    console.log(res.data,"responce form server");
   };
 
   return (
