@@ -29,8 +29,8 @@ const credController = {
                     const hash = await argon2.hash(password);
                     await credModel.create({ email, hash, name });
                     const tempToken = jwt.sign({ email, password, name }, "BLOG@#WALA", { expiresIn: "24 hr" })
-                    const refreshToken = jwt.sign({},"BLOG@#WALA",{expiresIn:"30 day"})
-                    return { tempToken: tempToken ,refreshToken:refreshToken}
+                    const refreshToken = jwt.sign({}, "BLOG@#WALA", { expiresIn: "30 day" })
+                    return { tempToken: tempToken, refreshToken: refreshToken }
 
                 } else {
                     return "Wrong OTP or Expired"
@@ -62,16 +62,37 @@ const credController = {
                     subject: "Blog One Otp",
                     html: `Grreting from OpenBlog 
                        your otp is ${finalotp}`
-                }).then(()=>{
+                }).then(() => {
                     return 'otp send'
                 })
-                
+
             }
         } catch (e) {
             return e.message
         }
     },//create Done
-   
+    login: async (creds) => {
+        try {
+            const { email, password } = creds
+            var user = await credModel.findOne({ email })
+            if (user) {
+                const verify = await argon2.verify(user.hash, password);
+                if (verify) {
+                    const primarytoken = jwt.sign({ id: user._id, email: user.email, role: user.role, password: user.hash }, "SECRET11", { expiresIn: "24 hr" })
+                    const secondarytoken = jwt.sign({}, "SECRET11", { expiresIn: "30 day" });
+                    return { primarytoken, secondarytoken }
+                } else {
+                    return "Email or password is wrong"
+                }
+            } else {
+                return "User Not found"
+            }
+        } catch (e) {
+            console.log(user, "login");
+            return e.message
+        }
+    },
+
     getNewToken: async (token) => {
         try {
             let verify = jwt.verify(token, "BLOG@#WALA")
