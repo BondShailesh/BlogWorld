@@ -71,7 +71,7 @@ function Login() {
       borderColor={["", "gray.300"]}
       borderRadius={10}
       boxShadow="xl"
-      mb={['55px',"15px"]}
+      mb={['65px',"15px"]}
     >
       <VStack spacing={4} align="flex-start" w="full">
         <VStack spacing={4} align={["flex-start", "center"]} w="full">

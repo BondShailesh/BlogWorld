@@ -22,13 +22,13 @@ function Create() {
     const date = new Date().toISOString().split('T')[0]
     setForm({
       ...form,
-      date: date,
+      date: date
     });
+
     if (value) {
       onFileUpload();
       setValue(false);
     }
-
   }, [value]);
 
   const onFileUpload = async () => {
@@ -47,7 +47,6 @@ function Create() {
       .then((response) => response.text())
       .then((result) => {
         result = JSON.parse(result)
-        console.log(result,"result hai ye hi")
           setForm({
             ...form,
             [imageName]: result.data.link
@@ -76,10 +75,10 @@ function Create() {
     setForm({
       ...form,
       love: 0,
-      followers:0
+      followers:0,
+      creds:""
     });
     let res = await axios.post("https://whispering-garden-97359.herokuapp.com/blogs",{...form})
-    console.log(res.data,"responce form server");
   };
 
   return (
@@ -146,22 +145,22 @@ function Create() {
         <Textarea
           onChange={handleChange}
           name="desOne1"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desOne2"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desOne3"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desOne4"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
       </Box>
 
@@ -181,22 +180,22 @@ function Create() {
         <Textarea
           onChange={handleChange}
           name="desTwo1"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desTwo2"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desTwo3"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desTwo4"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
       </Box>
 
@@ -216,22 +215,22 @@ function Create() {
         <Textarea
           onChange={handleChange}
           name="desThree1"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desThree2"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desThree3"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desThree4"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
       </Box>
 
@@ -251,22 +250,22 @@ function Create() {
         <Textarea
           onChange={handleChange}
           name="desFour1"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desFour2"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desFour3"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desFour4"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
       </Box>
 
@@ -286,22 +285,22 @@ function Create() {
         <Textarea
           onChange={handleChange}
           name="desFive1"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desFive2"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desFive3"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
         <Textarea
           onChange={handleChange}
           name="desFive4"
-          placeholder="To write like this"
+          placeholder="write indivisual paragraph here"
         />
       </Box>
 

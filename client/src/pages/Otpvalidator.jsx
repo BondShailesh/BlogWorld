@@ -60,7 +60,7 @@ function OTPValidator() {
       borderColor={["", "gray.300"]}
       borderRadius={10}
       boxShadow="xl"
-      mb={["250px", "150px"]}
+      mb={["260px", "150px"]}
     >
       <VStack spacing={4} align="flex-start" w="full">
         <VStack spacing={4} align={["flex-start", "center"]} w="full">

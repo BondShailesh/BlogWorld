@@ -17,7 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { SIGNUP_DATA } from "../store/signup/signup.action";
 import LoginButton from "../components/LoginButton";
 import {gapi} from "gapi-script"
-const clientId = "731828041746-6uf7heq6sh6lihj170l8bv2c9kot81r0.apps.googleusercontent.com"
+
+const clientId = process.env.CLIENT_ID
 
 function Signup() {
   let [form, setForm] = useState();

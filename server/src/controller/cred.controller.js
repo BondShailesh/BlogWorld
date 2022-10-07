@@ -58,14 +58,13 @@ const credController = {
                 });
                 await transporter.sendMail({
                     from: "Shaileshrajvicky555@gmail.com",
-                    to: "Shaileshrajvicky@gmail.com",
-                    subject: "Blog One Otp",
+                    to: email,
+                    subject: "Otp for Open Blog",
                     html: `Grreting from OpenBlog 
                        your otp is ${finalotp}`
                 }).then(() => {
                     return 'otp send'
                 })
-
             }
         } catch (e) {
             return e.message
@@ -88,7 +87,6 @@ const credController = {
                 return "User Not found"
             }
         } catch (e) {
-            console.log(user, "login");
             return e.message
         }
     },

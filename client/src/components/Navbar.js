@@ -58,9 +58,7 @@ export default function Nav() {
     localStorage.removeItem("token")
     navigate("/")
   }
-  const handleSearch = ()=>{
-    console.log(search);
-  }
+  
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} 

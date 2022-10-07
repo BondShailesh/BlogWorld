@@ -74,7 +74,6 @@ function Blog() {
     };
     getData();
   }, [like, followers, comment]);
-
   return (
     <Box color="#3E3C3D" mt={["90px", "90px"]}>
       <Box
@@ -104,11 +103,11 @@ function Blog() {
               <Text>{data.date}</Text>
               <Text ml={["12px", "30px"]}>3 min read</Text>
             </Box>
-            <Text textAlign="center">{data.description}</Text>
+            <Text textAlign="center" fontSize={['18','23px']}>{data.description}</Text>
 
-            <VStack m="30px">
+            <VStack m={['10px',"30px"]}>
               {data.subOne ? (
-                <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize="30px">
+                <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize={['21px',"30px"]}>
                   {data.subOne}
                 </Heading>
               ) : (
@@ -121,9 +120,9 @@ function Blog() {
               {data.desOne4 ? <Text>{data.desOne4}</Text> : ""}
             </VStack>
 
-            <VStack m="30px">
+            <VStack m={['10px',"30px"]}>
               {data.subTwo ? (
-                <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize="30px">
+                <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize={['21px',"30px"]}>
                   {data.subTwo}
                 </Heading>
               ) : (
@@ -136,9 +135,9 @@ function Blog() {
               {data.desTwo4 ? <Text>{data.desTwo4}</Text> : ""}
             </VStack>
 
-            <VStack m="30px">
+            <VStack m={['10px',"30px"]}>
               {data.subThree ? (
-                <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize="30px">
+                <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize={['21px',"30px"]}>
                   {data.subThree}
                 </Heading>
               ) : (
@@ -151,9 +150,9 @@ function Blog() {
               {data.desThree4 ? <Text>{data.desThree4}</Text> : ""}
             </VStack>
 
-            <VStack m="30px">
+            <VStack m={['10px',"30px"]}>
               {data.subFour ? (
-                <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize="30px">
+                <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize={['21px',"30px"]}>
                   {data.subFour}
                 </Heading>
               ) : (
@@ -166,9 +165,9 @@ function Blog() {
               {data.desFour4 ? <Text>{data.desFour4}</Text> : ""}
             </VStack>
 
-            <VStack m="30px">
+            <VStack m={['10px',"30px"]}>
               {data.subFive ? (
-                <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize="30px">
+                <Heading color="#1D1C1D" fontWeight="semi-bold" fontSize={['21px',"30px"]}>
                   {data.subFive}
                 </Heading>
               ) : (
@@ -214,7 +213,7 @@ function Blog() {
               </Button>
             </Box>
 
-            <Box h="200px" border="1px solid black">
+            <Box h={['100px',"200px"]} border="1px solid black">
               {comments
                 ? comments.map((el) => (
                     <Box key={el._id} textAlign="left" ml="20px" mb="10px">

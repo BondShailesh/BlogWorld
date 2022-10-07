@@ -18,7 +18,6 @@ credRoute.get("/:id", async (req, res) => {
             res.send(user)
         }
     } catch (e) {
-        console.log(e.message, "hthf");
         res.send("Credential Not Found")
     }
 })

@@ -6,7 +6,6 @@ import { Link, useParams } from "react-router-dom";
 function Blogs() {
   const [data, setData] = useState([]);
   const {id} = useParams()
-  console.log(id);
   const [
     isLargerthan841px,
     isLargerthan421px,

@@ -9,12 +9,13 @@ blogRouter.get("/", async (req, res) => {
 
 blogRouter.get("/:id", async (req, res) => {
     try {
-        let blog1 = await blogModel.find({ creds: {_id:req.params.id} })
-        if (blog1.length < 1) {
+
+        let blog1 = await blogModel.find({ cred: {_id:req.params.id} })
+        if (blog1.length >=1) {
+            return res.status(201).send(blog1);
+        } else {
             let blog2 = await blogModel.find({ _id: req.params.id })
             return res.status(201).send(blog2);
-        } else {
-            return res.status(201).send(blog1);
         }
     } catch (e) {
         res.status(404).send(e.message);
