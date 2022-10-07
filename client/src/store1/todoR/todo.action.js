@@ -14,7 +14,6 @@ export const todoAPI = () => async (dispatch) => {
         dispatch({
             type: "TODOGETERROR",
         })
-        console.log(e);
     }
 }
 
@@ -30,7 +29,6 @@ export const todoINPUT = (todo) => async (dispatch) => {
             payload: res.data
         })
     } catch (e) {
-        console.log(e);
     }
 }
 
@@ -43,7 +41,6 @@ export const todoDELETEAC = (id) => async (dispatch) => {
             payload: id
         })
     } catch (e) {
-        console.log(e);
     }
 }
 
@@ -62,6 +59,5 @@ export const todoTOGGLEAC = (id, status) => async (dispatch) => {
             payload: id
         })
     } catch (e) {
-        console.log(e);
     }
 }

@@ -5,9 +5,6 @@ const blogRouter = express.Router();
 
 blogRouter.get("/", async (req, res) => {
     let user = await blogModel.find()
-    // .populate("cred", {
-    //     password: 0, data: 0, __v: 0
-    // })
     res.send(user)
 })
 
@@ -27,7 +24,6 @@ blogRouter.get("/:id", async (req, res) => {
 
 blogRouter.post("/", async (req, res) => {
     try {
-        console.log(req.body);
         let blog = await blogModel.create(req.body)
         res.send(blog);
     } catch (e) {
@@ -57,7 +53,6 @@ blogRouter.patch("/:id", async (req, res) => {
         res.send(user)
     } catch (e) {
         res.status(401).send(e.message);
-        console.log("something");
     }
 })
 
