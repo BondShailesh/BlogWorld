@@ -10,11 +10,14 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SIGNUP_DATA } from "../store/signup/signup.action";
+import LoginButton from "../components/LoginButton";
+import {gapi} from "gapi-script"
+const clientId = "731828041746-6uf7heq6sh6lihj170l8bv2c9kot81r0.apps.googleusercontent.com"
 
 function Signup() {
   let [form, setForm] = useState();
@@ -22,6 +25,17 @@ function Signup() {
   const navigate = useNavigate();
   const toast = useToast();
   const positions = ["top"];
+
+  useEffect(()=>{
+    function start(){
+      gapi.client.init({
+        clientId: clientId,
+        scope :""
+      })
+    }
+    gapi.load('client:auth2',start);
+  })
+
 
   const handleSignup = () => {
     toast({
@@ -63,7 +77,7 @@ function Signup() {
         <VStack spacing={4} align={["flex-start", "center"]} w="full">
           <Heading>Signup to OpenBlog</Heading>
         </VStack>
-
+        <LoginButton/>
         <FormControl isRequired>
           <FormLabel>E-mail Address</FormLabel>
           <Input
