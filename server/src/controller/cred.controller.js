@@ -78,9 +78,9 @@ const credController = {
             if (user) {
                 const verify = await argon2.verify(user.hash, password);
                 if (verify) {
-                    const primarytoken = jwt.sign({ id: user._id, email: user.email, role: user.role, password: user.hash }, "SECRET11", { expiresIn: "24 hr" })
-                    const secondarytoken = jwt.sign({}, "SECRET11", { expiresIn: "30 day" });
-                    return { primarytoken, secondarytoken }
+                    const tempToken = jwt.sign({ id: user._id, email: user.email, role: user.role, password: user.hash }, "SECRET11", { expiresIn: "24 hr" })
+                    const refreshToken = jwt.sign({}, "SECRET11", { expiresIn: "30 day" });
+                    return { tempToken: tempToken, refreshToken: refreshToken }
                 } else {
                     return "Email or password is wrong"
                 }

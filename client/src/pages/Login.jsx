@@ -8,13 +8,54 @@ import {
   HStack,
   Input,
   Text,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { POST_LOGIN_API } from "../store/authentication/auth.action";
 
 function Login() {
+  const [form,setForm] = useState()
   const navigate = useNavigate();
+  const toast = useToast();
+  const positions = ["top"];
+ const dispatch = useDispatch()
+
+  const handleChange = (e)=>{
+    let {name,value} = e.target
+    setForm({
+      ...form,
+      [name]:value
+    })
+  }
+
+  const handleLogin = async()=>{
+    dispatch(POST_LOGIN_API(form))
+    const tokenVerify = await JSON.parse(localStorage.getItem("token"));
+    if (tokenVerify) {
+      toast({
+        title: "Otp verified.",
+        description: "Success.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: positions,
+      });
+      return navigate("/create");
+    } else {
+      toast({
+        title: "Wrong Otp or expired.",
+        description: "Please Enter correct otp.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: positions,
+      });
+    }
+  }
   
   const handleSighup = () => {
     navigate("/signup");
@@ -39,11 +80,11 @@ function Login() {
 
         <FormControl isRequired>
           <FormLabel>E-mail Address</FormLabel>
-          <Input rounded="3xl" variant="filled" type="email" />
+          <Input onChange={(e)=>handleChange(e)} rounded="3xl" variant="filled" type="email" name="email"/>
         </FormControl>
         <FormControl isRequired>
           <FormLabel>password</FormLabel>
-          <Input rounded="3xl" variant="filled" type="password" />
+          <Input onChange={(e)=>handleChange(e)} rounded="3xl" variant="filled" type="password" name='password'/>
         </FormControl>
 
         <HStack w="full" justify="space-between">
@@ -59,6 +100,7 @@ function Login() {
           alignSelf="center"
           borderRadius="20px"
           color="whitesmoke"
+          onClick={handleLogin}
         >
           Login
         </Button>
