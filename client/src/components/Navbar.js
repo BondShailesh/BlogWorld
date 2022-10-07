@@ -2,7 +2,6 @@ import {
   Box,
   Flex,
   Avatar,
-  Link,
   Button,
   Menu,
   MenuButton,
@@ -18,27 +17,29 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { BsSearch } from "react-icons/bs";
-// import { IoSearchCircleSharp } from "react-icons/lo";
+// import { Link } from "react-router-dom";
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,Link} from 'react-router-dom';
+import { useState } from 'react';
 
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}>
-    {children}
-  </Link>
-);
+// const NavLink = ({ children }) => (
+//   <Link
+//     px={2}
+//     py={1}
+//     rounded={'md'}
+//     _hover={{
+//       textDecoration: 'none',
+//       bg: useColorModeValue('gray.200', 'gray.700'),
+//     }}
+//     href={'#'}>
+//     {children}
+//   </Link>
+// );
 
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [search,setSearch] = useState()
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -55,9 +56,10 @@ export default function Nav() {
 
   const handleLogout = () => {
     localStorage.removeItem("token")
+    navigate("/")
   }
   const handleSearch = ()=>{
-    
+    console.log(search);
   }
   return (
     <>
@@ -81,9 +83,9 @@ export default function Nav() {
             >Blog World</Heading>
           </Box>
           <Box mr={['18px']} mt="5px" display="flex" ml="10px" justifyContent="space-around" alignItem="center">
-            <Input borderRadius="8px" placeholder="search blogs" />
+            <Input onChange={(e)=>setSearch(e.target.value)} borderRadius="8px" placeholder="search blogs" />
             <Box bg="blue.200" borderRadius="8px" h="38px" p="5px" borderRight="1px dotted grey" borderTop="1px dotted grey" borderBottom="1px dotted grey">
-              <BsSearch onClick={handleSearch} cursor="pointer" size="25px" alignItems="center" />
+             <Link to={`/search/${search}`}><BsSearch cursor="pointer" size="25px" alignItems="center" /></Link> 
             </Box>
           </Box>
           <Box>

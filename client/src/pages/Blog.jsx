@@ -66,7 +66,7 @@ function Blog() {
 
   useEffect(() => {
     const getData = async () => {
-      let res = await axios.get(`http://localhost:8080/blogs/${id}`);
+      let res = await axios.get(`https://whispering-garden-97359.herokuapp.com/blogs/${id}`);
       setdata(res.data[0]);
       setLike(res.data[0].love);
       setFollowers(res.data[0].followers);
@@ -214,7 +214,7 @@ function Blog() {
               </Button>
             </Box>
 
-            <Box h="400px" border="1px solid black">
+            <Box h="200px" border="1px solid black">
               {comments
                 ? comments.map((el) => (
                     <Box key={el._id} textAlign="left" ml="20px" mb="10px">

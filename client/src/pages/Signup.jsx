@@ -7,51 +7,57 @@ import {
   HStack,
   Input,
   Text,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { POST_API } from "../store/authentication/auth.action";
 import { SIGNUP_DATA } from "../store/signup/signup.action";
 
 function Signup() {
-    let [form,setForm] = useState()
+  let [form, setForm] = useState();
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const toast = useToast();
+  const positions = ["top"];
 
   const handleSignup = () => {
-    alert("please Enter otp")
-    dispatch(SIGNUP_DATA(form))
-    // dispatch(POST_API(form));
-    navigate("/otp")
+    toast({
+      title: "Otp send.",
+      description: "Kidly check your email.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+      position: positions,
+    });
+    dispatch(SIGNUP_DATA(form));
+    navigate("/otp");
   };
-
 
   const handleLogin = () => {
     navigate("/login");
   };
-  const handleInput = (e)=>{
-   const {type,value , name} = e.target
-   setForm({
-    ...form,
-    [name]:value
-   })
-  }
-  
+  const handleInput = (e) => {
+    const { value, name } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+
   return (
     <Box
       w={["full", "md"]}
       p={[8, 10]}
-      mt={['80px','95px']}
+      mt={["80px", "95px"]}
       mx="auto"
       border={["none", "1px"]}
       borderColor={["", "gray.300"]}
       borderRadius={10}
       boxShadow="xl"
-      mb='15px'
+      mb={["55px", "15px"]}
     >
       <VStack spacing={4} align="flex-start" w="full">
         <VStack spacing={4} align={["flex-start", "center"]} w="full">
@@ -60,17 +66,35 @@ function Signup() {
 
         <FormControl isRequired>
           <FormLabel>E-mail Address</FormLabel>
-          <Input onChange={handleInput} name="email" rounded="3xl" variant="filled" type="email" />
+          <Input
+            onChange={handleInput}
+            name="email"
+            rounded="3xl"
+            variant="filled"
+            type="email"
+          />
         </FormControl>
 
         <FormControl isRequired>
           <FormLabel>password</FormLabel>
-          <Input onChange={handleInput} name="password" rounded="3xl" variant="filled" type="password" />
+          <Input
+            onChange={handleInput}
+            name="password"
+            rounded="3xl"
+            variant="filled"
+            type="password"
+          />
         </FormControl>
 
         <FormControl isRequired>
-          <FormLabel >Name</FormLabel>
-          <Input onChange={handleInput} name="name" rounded="3xl" variant="filled" type="text" />
+          <FormLabel>Name</FormLabel>
+          <Input
+            onChange={handleInput}
+            name="name"
+            rounded="3xl"
+            variant="filled"
+            type="text"
+          />
         </FormControl>
 
         <Button

@@ -5,6 +5,7 @@ import Create from '../pages/Create';
 import Homepage from '../pages/Homepage';
 import Login from '../pages/Login';
 import OTPValidator from '../pages/Otpvalidator';
+import Search from '../pages/Search';
 import Signup from '../pages/Signup';
 import PrivateRoute from '../privateRoute/PrivateRoute';
 
@@ -14,6 +15,7 @@ function AllRoutes() {
             <Routes>
                 <Route path='/' element={<Homepage />} />
                 <Route path='/blog/:id' element={<Blog />} />
+                <Route path='/search/:id' element={<Search />} />
                 <Route path='/create' element={
                 <PrivateRoute>
                 <Create />

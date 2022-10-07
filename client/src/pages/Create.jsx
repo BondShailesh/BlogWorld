@@ -78,7 +78,7 @@ function Create() {
       love: 0,
       followers:0
     });
-    let res = await axios.post("http://localhost:8080/blogs",{...form})
+    let res = await axios.post("https://whispering-garden-97359.herokuapp.com/blogs",{...form})
     console.log(res.data,"responce form server");
   };
 

@@ -11,9 +11,6 @@ function Footer() {
       justifyContent="space-around"
       bg="blue.300"
       color="white"
-      // position= 'fixed'
-      // bottom= "0"
-      // w= '100%'
     >
       <Box mb={["34px", "50px"]}>
         <Heading fontSize={["16px", "20px", "34px"]}>Connect with me</Heading>

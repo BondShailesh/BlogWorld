@@ -3,7 +3,7 @@ import axios from "axios"
 
 export const SIGNUP_DATA = (creds)=> async(dispatch)=>{
    try{
-      await axios.post("http://localhost:8080/creds", { ...creds })
+      await axios.post("https://whispering-garden-97359.herokuapp.com/creds", { ...creds })
       .then((res)=>{
          dispatch({
             type:STORE_SIGN_UP,

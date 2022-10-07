@@ -1,21 +1,20 @@
 const express = require("express");
 const blogModel = require("../models/blog.model");
 const blogRouter = express.Router();
-// const userdataRoute = require("../schema/userdataSchema");
 
 blogRouter.get("/", async (req, res) => {
-    let user = await blogModel.find()
-    res.send(user)
+    let blog = await blogModel.find()
+    res.send(blog)
 })
 
 blogRouter.get("/:id", async (req, res) => {
     try {
-        let user1 = await blogModel.find({ cred: { _id: req.params.id } })
-        if (user1.length < 1) {
-            let user2 = await blogModel.find({ _id: req.params.id })
-            res.send(user2);
+        let blog1 = await blogModel.find({ creds: {_id:req.params.id} })
+        if (blog1.length < 1) {
+            let blog2 = await blogModel.find({ _id: req.params.id })
+            return res.status(201).send(blog2);
         } else {
-            res.send(user1);
+            return res.status(201).send(blog1);
         }
     } catch (e) {
         res.status(404).send(e.message);
@@ -25,7 +24,20 @@ blogRouter.get("/:id", async (req, res) => {
 blogRouter.post("/", async (req, res) => {
     try {
         let blog = await blogModel.create(req.body)
-        res.send(blog);
+        res.status(201).send(blog);
+    } catch (e) {
+        res.send(e.message)
+    }
+})
+
+blogRouter.post("/title", async (req, res) => {
+    try {
+        let {title} = req.body
+        let blog = await blogModel.find({title:title})
+        if(blog.length<1){
+           return res.status(201).send("No result found");  
+        }
+        return res.status(201).send(blog);        
     } catch (e) {
         res.send(e.message)
     }
@@ -33,15 +45,8 @@ blogRouter.post("/", async (req, res) => {
 
 blogRouter.delete("/:id", async (req, res) => {
     try {
-        // let user1 = await blogModelfind({ cred: { _id: req.params.id } })
-        // if (user1.length >= 1) {
-        //     let userD = await blogModeldeleteMany({ cred: { _id: req.params.id } })
-        //     res.send(userD);
-        // } else {
-            let blog = await blogModel.deleteOne({ _id: req.params.id })
-            res.send(blog);
-        // }
-
+        let blog = await blogModel.deleteOne({ _id: req.params.id })
+        res.status(201).send(blog);
     } catch (e) {
         res.status(401).send(e.message)
     }
@@ -49,8 +54,8 @@ blogRouter.delete("/:id", async (req, res) => {
 
 blogRouter.patch("/:id", async (req, res) => {
     try {
-        let user = await blogModel.updateOne({ _id: req.params.id }, { $set: { ...req.body } })
-        res.send(user)
+        let blog = await blogModel.updateOne({ _id: req.params.id }, { $set: { ...req.body } })
+        res.send(blog)
     } catch (e) {
         res.status(401).send(e.message);
     }

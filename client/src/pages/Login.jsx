@@ -15,9 +15,11 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
+  
   const handleSighup = () => {
     navigate("/signup");
   };
+
   return (
     <Box
       w={["full", "md"]}
@@ -28,7 +30,7 @@ function Login() {
       borderColor={["", "gray.300"]}
       borderRadius={10}
       boxShadow="xl"
-      mb="15px"
+      mb={['55px',"15px"]}
     >
       <VStack spacing={4} align="flex-start" w="full">
         <VStack spacing={4} align={["flex-start", "center"]} w="full">

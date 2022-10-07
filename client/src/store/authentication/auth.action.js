@@ -3,7 +3,7 @@ import { SIGN_UP } from "./auth.type";
 
 export const POST_API = (creds) => async (dispatch) => {
   try {
-    await axios.post("http://localhost:8080/creds", { ...creds })
+    await axios.post("https://whispering-garden-97359.herokuapp.com/creds", { ...creds })
       .then((res) => {
         dispatch({
           type: SIGN_UP,
@@ -18,7 +18,7 @@ export const POST_API = (creds) => async (dispatch) => {
 
 export const CHECK_TOKEN = (creds) => async (dispatch) => {
   try {
-    await axios.post("http://localhost:8080/creds", { ...creds })
+    await axios.post("https://whispering-garden-97359.herokuapp.com/creds", { ...creds })
       .then((res) => {
         console.log(res.data);
         dispatch({
