@@ -37,7 +37,7 @@ function Login() {
     const tokenVerify = await JSON.parse(localStorage.getItem("token"));
     if (tokenVerify) {
       toast({
-        title: "Otp verified.",
+        title: "Login Success.",
         description: "Success.",
         status: "success",
         duration: 5000,
@@ -47,8 +47,8 @@ function Login() {
       return navigate("/create");
     } else {
       toast({
-        title: "Wrong Otp or expired.",
-        description: "Please Enter correct otp.",
+        title: "Email or password does not match.",
+        description: "Please correct your credential.",
         status: "success",
         duration: 5000,
         isClosable: true,
