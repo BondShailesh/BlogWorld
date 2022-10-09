@@ -78,7 +78,9 @@ function Create() {
       followers:0,
       creds:""
     });
-    let res = await axios.post("https://whispering-garden-97359.herokuapp.com/blogs",{...form})
+    console.log(form);
+    let res = await axios.post("http://18.183.244.241:3001/blogs",{...form})
+    console.log(res);
   };
 
   return (
@@ -96,12 +98,12 @@ function Create() {
           fontSize={["20px", "44px"]}
           placeholder="Say your blog title loud to the world"
         />
-        <Input
+        <Textarea
           onChange={handleChange}
           name="description"
           fontStyle="italic"
           m="10px"
-          h={["30px", "64px"]}
+          h={["25px", "50px"]}
           fontWeight="light"
           fontSize={["20px", "44px"]}
           placeholder="Give a nice Description"

@@ -78,7 +78,7 @@ export default function Nav() {
               onClick={handleLogo}
               w={['133px','300px']}
               fontSize={['25px','27px','37px']}
-            >Blog World</Heading>
+            >BlogSeven</Heading>
           </Box>
           <Box mr={['18px']} mt="5px" display="flex" ml="10px" justifyContent="space-around" alignItem="center">
             <Input onChange={(e)=>setSearch(e.target.value)} borderRadius="8px" placeholder="search blogs" />

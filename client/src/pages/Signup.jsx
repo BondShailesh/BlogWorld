@@ -76,7 +76,7 @@ function Signup() {
     >
       <VStack spacing={4} align="flex-start" w="full">
         <VStack spacing={4} align={["flex-start", "center"]} w="full">
-          <Heading>Signup to OpenBlog</Heading>
+          <Heading>Signup to BlogSeven</Heading>
         </VStack>
         <LoginButton/>
         <FormControl isRequired>

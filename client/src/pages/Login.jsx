@@ -75,7 +75,7 @@ function Login() {
     >
       <VStack spacing={4} align="flex-start" w="full">
         <VStack spacing={4} align={["flex-start", "center"]} w="full">
-          <Heading>Login to OpenBlog</Heading>
+          <Heading>Login to BlogSeven</Heading>
         </VStack>
 
         <FormControl isRequired>

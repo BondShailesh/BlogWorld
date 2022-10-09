@@ -20,7 +20,7 @@ function Blogs() {
 
   useEffect(() => {
     const getData = async () => {
-      let res = await axios.post(`https://whispering-garden-97359.herokuapp.com/blogs/title`,{title:id});
+      let res = await axios.post(`http://18.183.244.241:3001/blogs/title`,{title:id});
         if(res.data!="No result found"){
             setData(res.data);
         }else{

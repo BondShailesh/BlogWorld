@@ -66,7 +66,7 @@ function Blog() {
 
   useEffect(() => {
     const getData = async () => {
-      let res = await axios.get(`https://whispering-garden-97359.herokuapp.com/blogs/${id}`);
+      let res = await axios.get(`http://18.183.244.241:3001/blogs/${id}`);
       setdata(res.data[0]);
       setLike(res.data[0].love);
       setFollowers(res.data[0].followers);

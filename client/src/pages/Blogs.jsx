@@ -14,11 +14,11 @@ function Blogs() {
     "(min-width: 840px)",
     "(min-width: 421px)",
     "(max-width: 840px)",
-    "(max-width: 420px)",
+    "(max-width: 560px)",
   ]);
   useEffect(() => {
     const getData = async () => {
-      let res = await axios.get("https://whispering-garden-97359.herokuapp.com/blogs");
+      let res = await axios.get("http://18.183.244.241:3001/blogs");
       setData(res.data);
     };
     getData();
@@ -37,7 +37,7 @@ function Blogs() {
       textAlign="left"
     >
       <Box
-        w={["90%","65%"]}
+        w={["90%",'90%','80%',"65%"]}
         borderLeft="1px dotted grey"
         borderRight="1px dotted grey"
         // paddingLeft='40px'
