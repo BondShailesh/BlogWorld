@@ -24,7 +24,7 @@ function Homepage() {
           position="absolute"
           left={["0%", "0%", "0%"]}
           right={["0%", "0%", "0%"]}
-          top={["670px", "50px"]}
+          top={["67px", "50px"]}
         >
           <Heading fontSize={["16px", "20px", "34px"]}>
             Publish your passions, your way
